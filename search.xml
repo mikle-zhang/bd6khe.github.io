@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2025/12/10/hello-world/</url>
+    <content><![CDATA[本博客于2025年12月10日诞生，这是第一篇文章，现在的博客干干净净，连背景图片都没有，接下来我会逐步配置和装修我的博客的，嘿嘿，期待以后的样子。  
+Markdown的基本语法我还不会，先在这留一个Markdown语法的链接在这方便以后查找吧。
+]]></content>
+  </entry>
+  <entry>
+    <title>测试用</title>
+    <url>/2025/12/11/%E6%B5%8B%E8%AF%95%E7%94%A8/</url>
+    <content><![CDATA[测试一下图片后面是一个图片这是图片后面的文字
+]]></content>
+      <categories>
+        <category>一号分类</category>
+      </categories>
+      <tags>
+        <tag>一号标签</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分类</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>友情链接</title>
+    <url>/link/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>标签页</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>说说</title>
+    <url>/shuoshuo/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+</search>
