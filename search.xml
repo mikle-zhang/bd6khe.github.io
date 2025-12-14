@@ -1,6 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>增加置顶滚动栏</title>
+    <url>/2025/12/14/%E5%A2%9E%E5%8A%A0%E7%BD%AE%E9%A1%B6%E6%BB%9A%E5%8A%A8%E6%A0%8F/</url>
+    <content><![CDATA[博客功能更新 —— 增加文章置顶滚动栏做一下记录，以免以后忘记都做了什么更改以及参数释义
+安装插件npm install hexo-butterfly-swiper --save
+
+添加配置信息我添加在了_config.yml文件中，以下为示例
+# 文章置顶滚动栏# hexo-butterfly-swiper# see https://akilar.top/posts/8e1264d1/swiper:  enable: true # 开关  priority: 5 #过滤器优先权  enable_page: all # 应用页面  timemode: date #date/updated  layout: # 挂载容器类型    type: id    name: recent-posts    index: 0  default_descr: 再怎么看我也不知道怎么描述它的啦！  swiper_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css #swiper css依赖  swiper_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js #swiper js依赖  custom_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css # 适配主题样式补丁  custom_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js # swiper初始化方法
+
+参数释义
+
+
+参数
+备选值&#x2F;类型
+释义
+
+
+
+priority
+number
+【可选】过滤器优先级，数值越小，执行越早，默认为10，选填
+
+
+enable
+true&#x2F;false
+【必选】控制开关
+
+
+enable_page
+path&#x2F;all
+【可选】填写想要应用的页面的相对路径（即路由地址）,如根目录就填’&#x2F;‘,分类页面就填’&#x2F;categories&#x2F;‘。若要应用于所有页面，就填’all’，默认为all
+
+
+timemode
+date&#x2F;updated
+【可选】时间显示，date为显示创建日期，updated为显示更新日期,默认为date
+
+
+layout.type
+id&#x2F;class
+【可选】挂载容器类型，填写id或class，不填则默认为id
+
+
+layout.name
+text
+【必选】挂载容器名称
+
+
+layout.index
+0和正整数
+【可选】前提是layout.type为class，因为同一页面可能有多个class，此项用来确认究竟排在第几个顺位
+
+
+default_descr
+text
+默认文章描述
+
+
+swiper_css
+url
+【可选】自定义的swiper依赖项css链接
+
+
+swiper_js
+url
+【可选】自定义的swiper依赖项加js链接
+
+
+custom_css
+url
+【可选】适配主题样式补丁
+
+
+custom_js
+url
+【可选】swiper初始化方法
+
+
+使用方法在文章的front_matter中添加swiper_index配置项即可。
+---title: 文章标题date: 创建日期updated: 更新日期cover: 文章封面description: 文章描述swiper_index: 1 #置顶轮播图顺序，非负整数，数字越大越靠前---]]></content>
+      <categories>
+        <category>博客功能更新</category>
+      </categories>
+      <tags>
+        <tag>记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>增加分类磁贴</title>
+    <url>/2025/12/14/%E5%A2%9E%E5%8A%A0%E5%88%86%E7%B1%BB%E7%A3%81%E8%B4%B4/</url>
+    <content><![CDATA[博客功能更新 —— 增加分类磁贴功能做一下记录，以免以后忘记都做了什么更改以及参数释义
+安装插件npm install hexo-butterfly-categories-card --save
+
+添加配置信息我添加在了_config.yml文件中，以下为示例
+# 分类磁贴# hexo-butterfly-categories-card# see https://akilar.top/posts/a9131002/categoryBar:  enable: true # 开关  priority: 5 #过滤器优先权  enable_page: / # 应用页面  layout: # 挂载容器类型    type: id    name: recent-posts    index: 0  column: odd # odd：3列 | even：4列  row: 1 #显示行数，默认两行，超过行数切换为滚动显示  message:    - descr: 业余无线电      cover: https://source.fomal.cc/img/default_cover_1.webp    - descr: 杂谈教程      cover: https://source.fomal.cc/img/default_cover_2.webp    - descr: 博客记录更新      cover: https://source.fomal.cc/img/default_cover_3.webp  custom_css: https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css
+
+参数释义
+
+
+参数
+备选值&#x2F;类型
+释义
+
+
+
+priority
+number
+【可选】过滤器优先级，数值越小，执行越早，默认为10，选填
+
+
+enable
+true&#x2F;false
+【必选】控制开关
+
+
+enable_page
+path&#x2F;all
+【可选】填写想要应用的页面的相对路径（即路由地址）,如根目录就填’&#x2F;‘,分类页面就填’&#x2F;categories&#x2F;‘。若要应用于所有页面，就填’all’，默认为’&#x2F;‘
+
+
+layout.type
+id&#x2F;class
+【可选】挂载容器类型，填写id或class，不填则默认为id
+
+
+layout.name
+text
+【必选】挂载容器名称
+
+
+layout.index
+0和正整数
+【可选】前提是layout.type为class，因为同一页面可能有多个class，此项用来确认究竟排在第几个顺位
+
+
+column
+odd&#x2F;even
+【可选】显示列数，考虑到比例问题，只提供3列和4列，odd为3列， even为4列
+
+
+row
+number
+【可选】显示行数，默认两行，超过行数切换为滚动显示
+
+
+message.descr
+text
+分类描述,需要和你自己的文章分类一一对应。
+
+
+message.cover
+url
+分类背景,需要和你自己的文章分类一一对应。
+
+
+custom_css
+url
+【可选】自定义样式，会替换默认的css链接，可以下载文档给出的cdn链接后自主修改
+
+
+]]></content>
+      <categories>
+        <category>博客功能更新</category>
+      </categories>
+      <tags>
+        <tag>记录</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2025·蕲春中继SSTV之夜</title>
     <url>/2025/12/14/2025%C2%B7%E8%95%B2%E6%98%A5%E4%B8%AD%E7%BB%A7SSTV%E4%B9%8B%E5%A4%9C/</url>
     <content><![CDATA[2025·蕲春中继SSTV之夜
@@ -43,6 +211,7 @@ SSTV科普我在想是要把科普写在本篇最后呢，还是另开一篇比�
         <category>业余无线电</category>
       </categories>
       <tags>
+        <tag>记录</tag>
         <tag>SSTV</tag>
       </tags>
   </entry>
@@ -189,13 +358,9 @@ SSTV科普我在想是要把科普写在本篇最后呢，还是另开一篇比�
       <categories>
         <category>教程</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2025/12/10/hello-world/</url>
-    <content><![CDATA[本博客于2025年12月10日诞生，这是第一篇文章，现在的博客干干净净，连背景图片都没有，接下来我会逐步配置和装修我的博客的，嘿嘿，期待以后的样子。  
-Markdown的基本语法我还不会，先在这留一个Markdown语法的链接在这方便以后查找吧。
-]]></content>
+      <tags>
+        <tag>文章</tag>
+      </tags>
   </entry>
   <entry>
     <title>SSTV科普</title>
@@ -247,22 +412,29 @@ QSL 卡片新形式：传统 QSL 卡片是纸质的，而 SSTV 可以发送电�
       <categories>
         <category>业余无线电</category>
       </categories>
+      <tags>
+        <tag>文章</tag>
+      </tags>
   </entry>
   <entry>
     <title>测试用</title>
     <url>/2025/12/11/%E6%B5%8B%E8%AF%95%E7%94%A8/</url>
     <content><![CDATA[测试一下图片后面是一个图片这是图片后面的文字
 ]]></content>
-      <categories>
-        <category>一号分类</category>
-      </categories>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2025/12/10/hello-world/</url>
+    <content><![CDATA[本博客于2025年12月10日诞生，这是第一篇文章，现在的博客干干净净，连背景图片都没有，接下来我会逐步配置和装修我的博客的，嘿嘿，期待以后的样子。  
+Markdown的基本语法我还不会，先在这留一个Markdown语法的链接在这方便以后查找吧。
+]]></content>
       <tags>
-        <tag>一号标签</tag>
+        <tag>记录</tag>
       </tags>
   </entry>
   <entry>
-    <title>标签页</title>
-    <url>/tags/index.html</url>
+    <title>分类</title>
+    <url>/categories/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -271,13 +443,13 @@ QSL 卡片新形式：传统 QSL 卡片是纸质的，而 SSTV 可以发送电�
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>分类</title>
-    <url>/categories/index.html</url>
+    <title>说说</title>
+    <url>/shuoshuo/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>说说</title>
-    <url>/shuoshuo/index.html</url>
+    <title>标签页</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
 </search>
