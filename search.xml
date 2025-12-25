@@ -114,6 +114,160 @@ url
       </tags>
   </entry>
   <entry>
+    <title>增加说说功能</title>
+    <url>//baaf67cd.html</url>
+    <content><![CDATA[博客功能更新 —— 增加说说页面说说页面供我自己使用，不要尝试我的用户名和密码哦。
+接下来做个记录，方便后期维护，留下了一点小问题，表情不能加载以后再修吧。
+注册和配置 LeanCloud按照官方文档弄就行，链接
+建议使用国际版 LeanCloud
+butterfly 主题安装插件和配置使用安装插件butterfly 主题 Hexo 博客已经整合了 artitalk 功能，所以直接安装 hexo-butterfly-artitalk 插件即可：
+npm install hexo-butterfly-artitalk
+
+yml配置我把配置文件添加在 _config.yml 文件里了
+# Artitalk说说artitalk:  enable: true  appId: #【必须】LeanCloud 创建的应用中的 AppID  appKey: #【必须】LeanCloud 创建的应用中的 AppKEY  path: #【可选】Artitalk 的路径名称（默认为 artitalk，生成的页面为 artitalk/index.html）  js: https://unpkg.com/aligu_artitalk@1.0.10/artitalk_aligu.js  option:     serverURL: &#x27;https://artitalk.bd6khe.cn&#x27;  # 这里替换为 LeanCloud 中配置的二级域名，否则会造成说说一直加载    pageSize: 10     atComment: 0  # 是否可评论    atEmoji:      color1: &#x27;linear-gradient(60deg, #ffd7e4 0, #c8f1ff 93%)&#x27;  # 说说背景色1（默认是橙色）    color2: &#x27;linear-gradient(60deg, #ffd7e4 0, #c8f1ff 93%)&#x27;  # 说说背景色2（默认是绿色）    color3: &#x27;#4c4948&#x27;  # 说说文字内容颜色（默认是白色）
+
+黑暗模式适配在自定义样式 [BlogRoot]\source\css\custom.css 中增加 artitalk 暗黑模式时的样式：
+/*artitalk说说暗黑模式背景色和字体色*//*配置项https://artitalk.js.org/settings.html*/[data-theme=&quot;dark&quot;] #artitalk_main .cbp_tmtimeline&gt;li:nth-child(odd) .cbp_tmlabel &#123;    background: #2c2c2c;&#125;[data-theme=&quot;dark&quot;] #artitalk_main .cbp_tmtimeline&gt;li .cbp_tmlabel &#123;    background: #2c2c2c;&#125;[data-theme=&quot;dark&quot;] #artitalk_main .cbp_tmtimeline&gt;li .cbp_tmlabel &#123;    color: rgba(255, 255, 255, 0.9);&#125;#operare_artitalk .at_button, #artitalk_main .at_button &#123;    background-color: var(--btn-bg) !important;    color: var(--btn-color) !important;    border-radius: 0.5em !important;&#125;#operare_artitalk .at_button, #artitalk_main .at_button:hover &#123;    background-color: var(--btn-hover-color) !important;&#125;
+
+修改和引用插件中的js文件好像能解决表情无法加载的问题，留个参考链接
+]]></content>
+      <categories>
+        <category>博客功能更新</category>
+      </categories>
+      <tags>
+        <tag>记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>增加置顶滚动栏</title>
+    <url>//103dcb9f.html</url>
+    <content><![CDATA[博客功能更新 —— 增加文章置顶滚动栏做一下记录，以免以后忘记都做了什么更改以及参数释义
+安装插件npm install hexo-butterfly-swiper --save
+
+添加配置信息我添加在了_config.yml文件中，以下为示例
+# 文章置顶滚动栏# hexo-butterfly-swiper# see https://akilar.top/posts/8e1264d1/swiper:  enable: true # 开关  priority: 5 #过滤器优先权  enable_page: all # 应用页面  timemode: date #date/updated  layout: # 挂载容器类型    type: id    name: recent-posts    index: 0  default_descr: 再怎么看我也不知道怎么描述它的啦！  swiper_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css #swiper css依赖  swiper_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js #swiper js依赖  custom_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css # 适配主题样式补丁  custom_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js # swiper初始化方法
+
+参数释义
+
+
+参数
+备选值&#x2F;类型
+释义
+
+
+
+priority
+number
+【可选】过滤器优先级，数值越小，执行越早，默认为10，选填
+
+
+enable
+true&#x2F;false
+【必选】控制开关
+
+
+enable_page
+path&#x2F;all
+【可选】填写想要应用的页面的相对路径（即路由地址）,如根目录就填’&#x2F;‘,分类页面就填’&#x2F;categories&#x2F;‘。若要应用于所有页面，就填’all’，默认为all
+
+
+timemode
+date&#x2F;updated
+【可选】时间显示，date为显示创建日期，updated为显示更新日期,默认为date
+
+
+layout.type
+id&#x2F;class
+【可选】挂载容器类型，填写id或class，不填则默认为id
+
+
+layout.name
+text
+【必选】挂载容器名称
+
+
+layout.index
+0和正整数
+【可选】前提是layout.type为class，因为同一页面可能有多个class，此项用来确认究竟排在第几个顺位
+
+
+default_descr
+text
+默认文章描述
+
+
+swiper_css
+url
+【可选】自定义的swiper依赖项css链接
+
+
+swiper_js
+url
+【可选】自定义的swiper依赖项加js链接
+
+
+custom_css
+url
+【可选】适配主题样式补丁
+
+
+custom_js
+url
+【可选】swiper初始化方法
+
+
+使用方法在文章的front_matter中添加swiper_index配置项即可。
+---title: 文章标题date: 创建日期updated: 更新日期cover: 文章封面description: 文章描述swiper_index: 1 #置顶轮播图顺序，非负整数，数字越大越靠前---]]></content>
+      <categories>
+        <category>博客功能更新</category>
+      </categories>
+      <tags>
+        <tag>记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>增加live2D</title>
+    <url>//5ffc7af2.html</url>
+    <content><![CDATA[博客功能更新 —— 增加live2D安装插件npm install hexo-oh-my-live2d
+
+配置参数添加代码在 _config.yml 文件中添加：
+# live2D看板娘OhMyLive2d:  enable: true  CDN: https://unpkg.com/oh-my-live2d  option:    dockedPosition: &#x27;left&#x27; # 模型停靠位置 默认值: &#x27;right&#x27; 可选值: &#x27;left&#x27; | &#x27;right&#x27;  # CDN: https://registry.npmmirror.com/oh-my-live2d/0.13/files/dist/index.min.js  # option:  #   # importType: &#x27;cubism2&#x27; #  导入类型, 默认使用全量导入: complete , 可选值: complete, cubism2, cubism5  #   libraryUrls: # 自定义 Cubism SDK 外部资源地址  #     complete: https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/complete.js  #     cubism2: https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism2.js  #     cubism5: https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism5.js       menus:      # 舞台边按钮消失↓      items: |        (defaultItems)=&gt;&#123;         return []        &#125;      # 舞台边按钮消失↑  #     items: |  #       (defaultItems)=&gt;&#123;  #        return [  #          ...defaultItems,  #          &#123;  #            id: &#x27;github&#x27;,  #            icon: &#x27;github-fill&#x27;,  #            title: &#x27;我的github&#x27;,  #            onClick: ()=&gt;window.open(&#x27;https://github.com/hacxy&#x27;)  #          &#125;  #        ]  #       &#125;    # items:    #   - id: &#x27;github&#x27;    #     icon: &#x27;github-fill&#x27;    #     title: &#x27;我的github&#x27;    #     onClick: ()=&gt;window.open(&#x27;https://github.com/hacxy&#x27;)    mobileDisplay: false # 是否在移动端显示    models:      - path: /live2d-models/云吞kumo/云吞kumo.model3.json        position: [-15, 5] # 模型在舞台中的位置。 默认值: [0,0] [横坐标, 纵坐标]        scale: 0.07 # 模型的缩放比例 默认值: 0.1        # showHitAreaFrames: false # 是否显示点击区域 默认值: false        stageStyle:          width: 300          height: 540        mobilePosition: [-10, 23] # 移动端时模型在舞台中的位置。 默认值: [0,0] [横坐标, 纵坐标]        mobileScale: 0.1 # 移动端时模型的缩放比例 默认值: 0.1        mobileStageStyle: # 移动端时舞台的样式          width: 180          height: 166        motionPreloadStrategy: ALL # 动作预加载策略 默认值: IDLE 可选值: ALL | IDLE | NONE      # - path: /live2d-models/hailunna_4/hailunna_4.model3.json      #   position: [-50, 0] # 模型在舞台中的位置。 默认值: [0,0] [横坐标, 纵坐标]      #   scale: 0.08 # 模型的缩放比例 默认值: 0.1      #   # showHitAreaFrames: true # 是否显示点击区域 默认值: false      #   stageStyle:      #     width: 350      #     height: 350      #   mobilePosition: [-10, 23] # 移动端时模型在舞台中的位置。 默认值: [0,0] [横坐标, 纵坐标]      #   mobileScale: 0.08 # 移动端时模型的缩放比例 默认值: 0.1      #   mobileStageStyle: # 移动端时舞台的样式      #     width: 180      #     height: 166      #   motionPreloadStrategy: IDLE # 动作预加载策略 默认值: IDLE 可选值: ALL | IDLE | NONE            parentElement: document.body #为组件提供一个父元素，如果未指定则默认挂载到 body 中    primaryColor: &#x27;var(--btn-bg)&#x27; # 主题色 支持变量    sayHello: false # 是否在初始化阶段打印项目信息    tips:      style:        width: 230        height: 120        left: calc(50% - 20px)        top: -100px      mobileStyle:        width: 180        height: 80        left: calc(50% - 30px)        top: -100px      idleTips:        interval: 3600        # message:        #   - 你好呀~        #   - 欢迎来到我的小站~        # 自定义提示语 需要 引入 axios 库 ,也可以使用其他方法        message: |          function()&#123;            return axios.get(&#x27;https://v1.hitokoto.cn?c=i&#x27;)              .then(function (response) &#123;                return response.data.hitokoto ;              &#125;)              .catch(function (error) &#123;                console.error(error);              &#125;);          &#125;        # wordTheDay: true        # 自定义  https://v1.hitokoto.cn  数据        # wordTheDay: |        #   function(wordTheDayData)&#123;        #     return `$&#123;wordTheDayData.hitokoto&#125;    by.$&#123;wordTheDayData.from&#125;`;        #   &#125;  # then: |  #   (oml2d)=&gt;&#123;  #      setTimeout(() =&gt; &#123;  #     oml2d.tipsMessage(&#x27;hello world&#x27;, 3000, 10);  #   &#125;, 8000);  #   &#125;
+
+舞台旁按钮关闭如果觉得舞台边上的按钮看着比较烦人，可以直接给以下代码取消注释。
+menus:     # 舞台边按钮消失↓  items: |    (defaultItems)=&gt;&#123;     return []    &#125;  # 舞台边按钮消失↑
+
+模型文件的放置在 source 文件夹里新建一个文件夹，里面放置模型文件，这里我命名为 live2d-models
+然后把下载的模型放进去，模型文件选择参考我的 - path: /live2d-models/云吞kumo/云吞kumo.model3.json
+live2d云端不加载问题在github.io访问的时候一切都很正常，但是我使用域名解析后，通过域名访问直接让live2d神秘消失了！
+打开控制台一看，原来是国内域名访问不了镜像。
+解决方法
+直接提前下载好镜像中的 index.min.js 文件
+存放在 source/live2d-models 里
+将 _config.yml 文件中下面内容进行修改：
+
+OhMyLive2d:  enable: true  CDN: /live2d/index.min.js]]></content>
+      <categories>
+        <category>博客功能更新</category>
+      </categories>
+      <tags>
+        <tag>记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>增加留言板页面</title>
+    <url>//f458b9a3.html</url>
+    <content><![CDATA[博客功能更新 —— 增加留言板页面增加后发现评论功能还没搞 &#x3D;)comments页面没搞明白，先放一放吧，在此做个记号。 
+安装npm install hexo-butterfly-envelope --save
+
+添加配置文件# 信笺样式留言板envelope_comment:  enable: true #控制开关  custom_pic:          cover: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/violet.jpg #信笺头部图片    line: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/line.png #信笺底部图片    beforeimg: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/before.png # 信封前半部分    afterimg: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/after.png # 信封后半部分  message: #信笺正文，多行文本，写法如下    - 有什么想问的？    - 有什么想说的？    - 有什么想吐槽的？    - 哪怕是有什么想吃的，都可以告诉我哦~  bottom: 自动书记人偶竭诚为您服务！ #仅支持单行文本  height: #1050px，信封划出的高度  path: #【可选】comments 的路径名称。默认为 comments，生成的页面为 comments/index.html  front_matter: #【可选】comments页面的 front_matter 配置    title: 留言板    comments: true]]></content>
+      <categories>
+        <category>博客功能更新</category>
+      </categories>
+      <tags>
+        <tag>记录</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>侧边栏电子钟</title>
     <url>//617b4074.html</url>
     <content><![CDATA[博客功能更新 —— 增加侧边栏电子钟安装npm install hexo-butterfly-clock-anzhiyu --save
@@ -229,198 +383,6 @@ gaud_map_key 申请申请地址: https://lbs.amap.com/
       </tags>
   </entry>
   <entry>
-    <title>增加置顶滚动栏</title>
-    <url>//103dcb9f.html</url>
-    <content><![CDATA[博客功能更新 —— 增加文章置顶滚动栏做一下记录，以免以后忘记都做了什么更改以及参数释义
-安装插件npm install hexo-butterfly-swiper --save
-
-添加配置信息我添加在了_config.yml文件中，以下为示例
-# 文章置顶滚动栏# hexo-butterfly-swiper# see https://akilar.top/posts/8e1264d1/swiper:  enable: true # 开关  priority: 5 #过滤器优先权  enable_page: all # 应用页面  timemode: date #date/updated  layout: # 挂载容器类型    type: id    name: recent-posts    index: 0  default_descr: 再怎么看我也不知道怎么描述它的啦！  swiper_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css #swiper css依赖  swiper_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js #swiper js依赖  custom_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css # 适配主题样式补丁  custom_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js # swiper初始化方法
-
-参数释义
-
-
-参数
-备选值&#x2F;类型
-释义
-
-
-
-priority
-number
-【可选】过滤器优先级，数值越小，执行越早，默认为10，选填
-
-
-enable
-true&#x2F;false
-【必选】控制开关
-
-
-enable_page
-path&#x2F;all
-【可选】填写想要应用的页面的相对路径（即路由地址）,如根目录就填’&#x2F;‘,分类页面就填’&#x2F;categories&#x2F;‘。若要应用于所有页面，就填’all’，默认为all
-
-
-timemode
-date&#x2F;updated
-【可选】时间显示，date为显示创建日期，updated为显示更新日期,默认为date
-
-
-layout.type
-id&#x2F;class
-【可选】挂载容器类型，填写id或class，不填则默认为id
-
-
-layout.name
-text
-【必选】挂载容器名称
-
-
-layout.index
-0和正整数
-【可选】前提是layout.type为class，因为同一页面可能有多个class，此项用来确认究竟排在第几个顺位
-
-
-default_descr
-text
-默认文章描述
-
-
-swiper_css
-url
-【可选】自定义的swiper依赖项css链接
-
-
-swiper_js
-url
-【可选】自定义的swiper依赖项加js链接
-
-
-custom_css
-url
-【可选】适配主题样式补丁
-
-
-custom_js
-url
-【可选】swiper初始化方法
-
-
-使用方法在文章的front_matter中添加swiper_index配置项即可。
----title: 文章标题date: 创建日期updated: 更新日期cover: 文章封面description: 文章描述swiper_index: 1 #置顶轮播图顺序，非负整数，数字越大越靠前---]]></content>
-      <categories>
-        <category>博客功能更新</category>
-      </categories>
-      <tags>
-        <tag>记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>增加留言板页面</title>
-    <url>//f458b9a3.html</url>
-    <content><![CDATA[博客功能更新 —— 增加留言板页面增加后发现评论功能还没搞 &#x3D;)comments页面没搞明白，先放一放吧，在此做个记号。 
-安装npm install hexo-butterfly-envelope --save
-
-添加配置文件# 信笺样式留言板envelope_comment:  enable: true #控制开关  custom_pic:          cover: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/violet.jpg #信笺头部图片    line: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/line.png #信笺底部图片    beforeimg: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/before.png # 信封前半部分    afterimg: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/after.png # 信封后半部分  message: #信笺正文，多行文本，写法如下    - 有什么想问的？    - 有什么想说的？    - 有什么想吐槽的？    - 哪怕是有什么想吃的，都可以告诉我哦~  bottom: 自动书记人偶竭诚为您服务！ #仅支持单行文本  height: #1050px，信封划出的高度  path: #【可选】comments 的路径名称。默认为 comments，生成的页面为 comments/index.html  front_matter: #【可选】comments页面的 front_matter 配置    title: 留言板    comments: true]]></content>
-      <categories>
-        <category>博客功能更新</category>
-      </categories>
-      <tags>
-        <tag>记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>主页加载动画</title>
-    <url>//15001891.html</url>
-    <content><![CDATA[博客功能更新 —— 增加主页加载动画使用wowjs插件，此插件还能作用于外挂标签页，暂时没研究，先在此做个记号。
-安装插件npm install hexo-butterfly-wowjs --save
-
-添加配置文件在站点配置文件_config.yml添加以下配置
-# wowjs动画加载效果wowjs:  enable: true #控制动画开关。true是打开，false是关闭  priority: 10 #过滤器优先级  mobile: false #移动端是否启用，默认移动端禁用  animateitem:    - class: recent-post-item #必填项，需要添加动画的元素的class      style: animate__zoomIn #必填项，需要添加的动画      duration: 1.5s #选填项，动画持续时间，单位可以是ms也可以是s。例如3s，700ms。      delay: 200ms #选填项，动画开始的延迟时间，单位可以是ms也可以是s。例如3s，700ms。      offset: 30 #选填项，开始动画的距离（相对浏览器底部）      iteration: 1 #选填项，动画重复的次数    - class: card-widget      style: animate__zoomIn      dalay: 200ms    - class: flink-list-card      style: animate__flipInY      duration: 3s    - class: flink-list-card      style: animate__animated      duration: 3s    - class: article-sort-item      style: animate__alideInRight      duration: 1.5s    - class: flink-list-card      style: animate__flipInY      duration: 3s    - class: flink-list-card      style: animate__animated      duration: 3s  animate_css: https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css  wow_js: https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js  wow_init_js: https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js
-
-参考文章参考文章
-]]></content>
-      <categories>
-        <category>博客功能更新</category>
-      </categories>
-      <tags>
-        <tag>记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>增加live2D</title>
-    <url>//5ffc7af2.html</url>
-    <content><![CDATA[博客功能更新 —— 增加live2D安装插件npm install hexo-oh-my-live2d
-
-配置参数添加代码在 _config.yml 文件中添加：
-# live2D看板娘OhMyLive2d:  enable: true  CDN: https://unpkg.com/oh-my-live2d  option:    dockedPosition: &#x27;left&#x27; # 模型停靠位置 默认值: &#x27;right&#x27; 可选值: &#x27;left&#x27; | &#x27;right&#x27;  # CDN: https://registry.npmmirror.com/oh-my-live2d/0.13/files/dist/index.min.js  # option:  #   # importType: &#x27;cubism2&#x27; #  导入类型, 默认使用全量导入: complete , 可选值: complete, cubism2, cubism5  #   libraryUrls: # 自定义 Cubism SDK 外部资源地址  #     complete: https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/complete.js  #     cubism2: https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism2.js  #     cubism5: https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism5.js       menus:      # 舞台边按钮消失↓      items: |        (defaultItems)=&gt;&#123;         return []        &#125;      # 舞台边按钮消失↑  #     items: |  #       (defaultItems)=&gt;&#123;  #        return [  #          ...defaultItems,  #          &#123;  #            id: &#x27;github&#x27;,  #            icon: &#x27;github-fill&#x27;,  #            title: &#x27;我的github&#x27;,  #            onClick: ()=&gt;window.open(&#x27;https://github.com/hacxy&#x27;)  #          &#125;  #        ]  #       &#125;    # items:    #   - id: &#x27;github&#x27;    #     icon: &#x27;github-fill&#x27;    #     title: &#x27;我的github&#x27;    #     onClick: ()=&gt;window.open(&#x27;https://github.com/hacxy&#x27;)    mobileDisplay: false # 是否在移动端显示    models:      - path: /live2d-models/云吞kumo/云吞kumo.model3.json        position: [-15, 5] # 模型在舞台中的位置。 默认值: [0,0] [横坐标, 纵坐标]        scale: 0.07 # 模型的缩放比例 默认值: 0.1        # showHitAreaFrames: false # 是否显示点击区域 默认值: false        stageStyle:          width: 300          height: 540        mobilePosition: [-10, 23] # 移动端时模型在舞台中的位置。 默认值: [0,0] [横坐标, 纵坐标]        mobileScale: 0.1 # 移动端时模型的缩放比例 默认值: 0.1        mobileStageStyle: # 移动端时舞台的样式          width: 180          height: 166        motionPreloadStrategy: ALL # 动作预加载策略 默认值: IDLE 可选值: ALL | IDLE | NONE      # - path: /live2d-models/hailunna_4/hailunna_4.model3.json      #   position: [-50, 0] # 模型在舞台中的位置。 默认值: [0,0] [横坐标, 纵坐标]      #   scale: 0.08 # 模型的缩放比例 默认值: 0.1      #   # showHitAreaFrames: true # 是否显示点击区域 默认值: false      #   stageStyle:      #     width: 350      #     height: 350      #   mobilePosition: [-10, 23] # 移动端时模型在舞台中的位置。 默认值: [0,0] [横坐标, 纵坐标]      #   mobileScale: 0.08 # 移动端时模型的缩放比例 默认值: 0.1      #   mobileStageStyle: # 移动端时舞台的样式      #     width: 180      #     height: 166      #   motionPreloadStrategy: IDLE # 动作预加载策略 默认值: IDLE 可选值: ALL | IDLE | NONE            parentElement: document.body #为组件提供一个父元素，如果未指定则默认挂载到 body 中    primaryColor: &#x27;var(--btn-bg)&#x27; # 主题色 支持变量    sayHello: false # 是否在初始化阶段打印项目信息    tips:      style:        width: 230        height: 120        left: calc(50% - 20px)        top: -100px      mobileStyle:        width: 180        height: 80        left: calc(50% - 30px)        top: -100px      idleTips:        interval: 3600        # message:        #   - 你好呀~        #   - 欢迎来到我的小站~        # 自定义提示语 需要 引入 axios 库 ,也可以使用其他方法        message: |          function()&#123;            return axios.get(&#x27;https://v1.hitokoto.cn?c=i&#x27;)              .then(function (response) &#123;                return response.data.hitokoto ;              &#125;)              .catch(function (error) &#123;                console.error(error);              &#125;);          &#125;        # wordTheDay: true        # 自定义  https://v1.hitokoto.cn  数据        # wordTheDay: |        #   function(wordTheDayData)&#123;        #     return `$&#123;wordTheDayData.hitokoto&#125;    by.$&#123;wordTheDayData.from&#125;`;        #   &#125;  # then: |  #   (oml2d)=&gt;&#123;  #      setTimeout(() =&gt; &#123;  #     oml2d.tipsMessage(&#x27;hello world&#x27;, 3000, 10);  #   &#125;, 8000);  #   &#125;
-
-舞台旁按钮关闭如果觉得舞台边上的按钮看着比较烦人，可以直接给以下代码取消注释。
-menus:     # 舞台边按钮消失↓  items: |    (defaultItems)=&gt;&#123;     return []    &#125;  # 舞台边按钮消失↑
-
-模型文件的放置在 source 文件夹里新建一个文件夹，里面放置模型文件，这里我命名为 live2d-models
-然后把下载的模型放进去，模型文件选择参考我的 - path: /live2d-models/云吞kumo/云吞kumo.model3.json
-live2d云端不加载问题在github.io访问的时候一切都很正常，但是我使用域名解析后，通过域名访问直接让live2d神秘消失了！
-打开控制台一看，原来是国内域名访问不了镜像。
-解决方法
-直接提前下载好镜像中的 index.min.js 文件
-存放在 source/live2d-models 里
-将 _config.yml 文件中下面内容进行修改：
-
-OhMyLive2d:  enable: true  CDN: /live2d/index.min.js]]></content>
-      <categories>
-        <category>博客功能更新</category>
-      </categories>
-      <tags>
-        <tag>记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>增加说说功能</title>
-    <url>//baaf67cd.html</url>
-    <content><![CDATA[博客功能更新 —— 增加说说页面说说页面供我自己使用，不要尝试我的用户名和密码哦。
-接下来做个记录，方便后期维护，留下了一点小问题，表情不能加载以后再修吧。
-注册和配置 LeanCloud按照官方文档弄就行，链接
-建议使用国际版 LeanCloud
-butterfly 主题安装插件和配置使用安装插件butterfly 主题 Hexo 博客已经整合了 artitalk 功能，所以直接安装 hexo-butterfly-artitalk 插件即可：
-npm install hexo-butterfly-artitalk
-
-yml配置我把配置文件添加在 _config.yml 文件里了
-# Artitalk说说artitalk:  enable: true  appId: #【必须】LeanCloud 创建的应用中的 AppID  appKey: #【必须】LeanCloud 创建的应用中的 AppKEY  path: #【可选】Artitalk 的路径名称（默认为 artitalk，生成的页面为 artitalk/index.html）  js: https://unpkg.com/aligu_artitalk@1.0.10/artitalk_aligu.js  option:     serverURL: &#x27;https://artitalk.bd6khe.cn&#x27;  # 这里替换为 LeanCloud 中配置的二级域名，否则会造成说说一直加载    pageSize: 10     atComment: 0  # 是否可评论    atEmoji:      color1: &#x27;linear-gradient(60deg, #ffd7e4 0, #c8f1ff 93%)&#x27;  # 说说背景色1（默认是橙色）    color2: &#x27;linear-gradient(60deg, #ffd7e4 0, #c8f1ff 93%)&#x27;  # 说说背景色2（默认是绿色）    color3: &#x27;#4c4948&#x27;  # 说说文字内容颜色（默认是白色）
-
-黑暗模式适配在自定义样式 [BlogRoot]\source\css\custom.css 中增加 artitalk 暗黑模式时的样式：
-/*artitalk说说暗黑模式背景色和字体色*//*配置项https://artitalk.js.org/settings.html*/[data-theme=&quot;dark&quot;] #artitalk_main .cbp_tmtimeline&gt;li:nth-child(odd) .cbp_tmlabel &#123;    background: #2c2c2c;&#125;[data-theme=&quot;dark&quot;] #artitalk_main .cbp_tmtimeline&gt;li .cbp_tmlabel &#123;    background: #2c2c2c;&#125;[data-theme=&quot;dark&quot;] #artitalk_main .cbp_tmtimeline&gt;li .cbp_tmlabel &#123;    color: rgba(255, 255, 255, 0.9);&#125;#operare_artitalk .at_button, #artitalk_main .at_button &#123;    background-color: var(--btn-bg) !important;    color: var(--btn-color) !important;    border-radius: 0.5em !important;&#125;#operare_artitalk .at_button, #artitalk_main .at_button:hover &#123;    background-color: var(--btn-hover-color) !important;&#125;
-
-修改和引用插件中的js文件好像能解决表情无法加载的问题，留个参考链接
-]]></content>
-      <categories>
-        <category>博客功能更新</category>
-      </categories>
-      <tags>
-        <tag>记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RKS的QSL</title>
-    <url>//ad292283.html</url>
-    <content><![CDATA[惊艳！BH6RKS的PCB沉金QSL卡片今天下午收到了一封来自RKS的信件，刚拿到手就感觉出了不一样——沉甸甸的稍小一点。
-打开信封，一块泛着细腻金光的PCB板映入眼前，QSL卡片我收过不少，但用PCB沉金工艺做的，这还是头一回！PCB基板自带一种“技术感的精致”，特别是再加上电路元素，最绝的是沉金工艺！表面的金属字和触点都覆着一层哑光金，光线下看着温温柔柔的，摸上去滑溜溜的，一点没有喷锡的粗糙感。
-
-先给朋友浅浅科普下：QSL卡片对我们来说，就是通联成功的“纪念勋章”，通联完互相寄一张，上面印着呼号、时间、频率这些关键信息。一般都是纸质的，偶尔有手绘或特殊材质的，但PCB材质真的直接拉满创意天花板了！
-还有字母解释法，简单来说，就是给每个英文字母分配一个固定的、辨识度高的单词，避免因电波干扰、背景噪音、口音差异导致字母听错。
-
-再来看一下卡片背面，它记录了26个英文字母的字母解释法，还有莫尔斯码速查表，实用性直接拉满，摆在电台旁边以便遗忘时查阅，
-最后必须给BH6RKS比个心！这份QSL卡片绝对是我收藏里的“王牌”！也盼着以后能跟更多火腿友友通联，收获更多这样的小惊喜～ 73！
-]]></content>
-      <categories>
-        <category>博客功能更新</category>
-      </categories>
-      <tags>
-        <tag>记录</tag>
-        <tag>QSL卡片</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>增加评论系统waline</title>
     <url>//49c36781.html</url>
     <content><![CDATA[博客功能更新 —— 增加评论系统（已弃用waline）研究了两个晚上，有点复杂嘞，做个记录吧。
@@ -466,24 +428,6 @@ https://cravatar.cn/avatar/&#123;&#123;mail|md5&#125;&#125;?d=retro
       </tags>
   </entry>
   <entry>
-    <title>vp3输液泵无法关门</title>
-    <url>//d7e980ba.html</url>
-    <content><![CDATA[维修记录 —— 迈瑞vp3输液泵泵门无法关闭吐槽一下，又遇到前人留下的坑了。
-检查问题泵门合上卡不住，观察一下发现卡扣很松直接能摁进去，导致门上的钩子勾不住。
-拆机拧掉机器背面螺丝，就能打开了，拔掉两根排线就能前后分离了。
-当你拔掉电池排线就会发现机器哔哔叫个不停，这个时候就可以拿胶布把它嘴贴上了嘿嘿。
-解决问题观察一下卡扣的位置，发现是被一个垫片和一个螺丝固定，螺丝松了导致卡扣会陷进去。
-然后拧螺丝的时候发现根本拧不动，十字的都被造成圆的了。
-然后使用了点小工具给螺丝干下来了，找了半天没找到合适的替换螺丝，然后突然发现固定按键板部分的螺丝好像是一样的，就打了它的主意，替换了一下，让那个拧不了的螺丝去干不太重要的活儿了。
-]]></content>
-      <categories>
-        <category>医工</category>
-      </categories>
-      <tags>
-        <tag>维修</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>更换评论系统</title>
     <url>//c61211a.html</url>
     <content><![CDATA[博客功能更新 —— 评论系统从Waline更换为Twikoo之前使用waline感觉不是很好用，主要是出现了一个莫名其妙的问题，然后突然发现twikoo挺不错的，就给换了。
@@ -519,41 +463,23 @@ comments:  # Up to two comments system, the first will be shown as default  # Ch
       </tags>
   </entry>
   <entry>
-    <title>从头开始学C语言-第一篇-基本结构</title>
-    <url>//c2120366.html</url>
-    <content><![CDATA[前言由于做单片机项目需要用到C语言，之前一直用的米思奇图形化编程，那个只能完成一下作业，所以只能学一下C的语法了，也方便看AI给出的代码。
-开篇大吉！
-基本结构C语言程序是从上到下，逐行运行的。
-预处理指令（以#开头）预处理阶段（编译前）执行的指令，无分号结尾，常见类型：
+    <title>RKS的QSL</title>
+    <url>//ad292283.html</url>
+    <content><![CDATA[惊艳！BH6RKS的PCB沉金QSL卡片今天下午收到了一封来自RKS的信件，刚拿到手就感觉出了不一样——沉甸甸的稍小一点。
+打开信封，一块泛着细腻金光的PCB板映入眼前，QSL卡片我收过不少，但用PCB沉金工艺做的，这还是头一回！PCB基板自带一种“技术感的精致”，特别是再加上电路元素，最绝的是沉金工艺！表面的金属字和触点都覆着一层哑光金，光线下看着温温柔柔的，摸上去滑溜溜的，一点没有喷锡的粗糙感。
 
-头文件： #include &lt;头文件名&gt; 或 #include &quot;自定义头文件.h&quot;，引入标准库 &#x2F; 自定义函数的声明（如stdio.h提供输入输出、stdlib.h提供内存管理,可以看成工具箱，函数就是工具箱里面的工具。
-宏定义： #define 宏名 常量/表达式（如#define PI 3.14159），编译前替换文本。
-条件编译： #ifdef/#ifndef/#endif，控制代码是否编译。
+先给朋友浅浅科普下：QSL卡片对我们来说，就是通联成功的“纪念勋章”，通联完互相寄一张，上面印着呼号、时间、频率这些关键信息。一般都是纸质的，偶尔有手绘或特殊材质的，但PCB材质真的直接拉满创意天花板了！
+还有字母解释法，简单来说，就是给每个英文字母分配一个固定的、辨识度高的单词，避免因电波干扰、背景噪音、口音差异导致字母听错。
 
-全局声明（可选）在所有函数外部定义的 变量&#x2F;函数 声明，作用域覆盖整个程序，注意每句结尾加分号。
-
-全局变量： int global_num = 10;（生命周期贯穿程序运行）。
-函数原型声明： int add(int a, int b);（声明自定义函数的返回值、参数，方便后续调用）。
-
-主函数 main() —— 程序入口必须唯一，程序从 main() 的第一行开始执行，结束于 main() 的返回。
-结构如下：
-// 函数头：返回值类型 函数名(参数列表)int main() &#123;  // 也可写int main(int argc, char *argv[])（命令行参数）    // 执行语句：完成具体逻辑，必须以分号结尾    printf(&quot;Hello World&quot;);  // 输出语句    return 0;  // 返回值：0表示程序正常结束，非0通常表示错误&#125;
-
-自定义函数（可选）实现模块化功能，结构为：返回值类型 函数名(参数列表) { 函数体 }，示例：
-// 自定义加法函数int add(int a, int b) &#123;    return a + b;  // 返回计算结果&#125;
-
-注释不参与编译，仅用于说明代码，两种格式：
-
-单行注释：// 注释内容
-多行注释：/* 注释内容 */（可跨多行）
-
-完整的 C 程序结构示例// 1. 预处理指令：引入标准输入输出库#include &lt;stdio.h&gt;// 2. 全局声明：全局变量 + 函数原型#define MAX 100  // 宏定义int global_var = 50;  // 全局变量int calculate(int x, int y);  // 函数原型声明// 3. 主函数：程序入口int main() &#123;    // 局部变量声明    int num1 = 10, num2 = 20;    int result;    // 执行语句：调用自定义函数、输出结果    result = calculate(num1, num2);    printf(&quot;计算结果：%d\n&quot;, result);    printf(&quot;全局变量值：%d\n&quot;, global_var);    return 0;  // 程序正常结束&#125;// 4. 自定义函数：实现具体功能int calculate(int x, int y) &#123;    return x + y + global_var;  // 使用全局变量&#125;]]></content>
+再来看一下卡片背面，它记录了26个英文字母的字母解释法，还有莫尔斯码速查表，实用性直接拉满，摆在电台旁边以便遗忘时查阅，
+最后必须给BH6RKS比个心！这份QSL卡片绝对是我收藏里的“王牌”！也盼着以后能跟更多火腿友友通联，收获更多这样的小惊喜～ 73！
+]]></content>
       <categories>
-        <category>C语言学习</category>
+        <category>博客功能更新</category>
       </categories>
       <tags>
-        <tag>笔记</tag>
-        <tag>C语言</tag>
+        <tag>记录</tag>
+        <tag>QSL卡片</tag>
       </tags>
   </entry>
   <entry>
@@ -813,6 +739,286 @@ a %= 5 → a=a%5
       </tags>
   </entry>
   <entry>
+    <title>vp3输液泵无法关门</title>
+    <url>//d7e980ba.html</url>
+    <content><![CDATA[维修记录 —— 迈瑞vp3输液泵泵门无法关闭吐槽一下，又遇到前人留下的坑了。
+检查问题泵门合上卡不住，观察一下发现卡扣很松直接能摁进去，导致门上的钩子勾不住。
+拆机拧掉机器背面螺丝，就能打开了，拔掉两根排线就能前后分离了。
+当你拔掉电池排线就会发现机器哔哔叫个不停，这个时候就可以拿胶布把它嘴贴上了嘿嘿。
+解决问题观察一下卡扣的位置，发现是被一个垫片和一个螺丝固定，螺丝松了导致卡扣会陷进去。
+然后拧螺丝的时候发现根本拧不动，十字的都被造成圆的了。
+然后使用了点小工具给螺丝干下来了，找了半天没找到合适的替换螺丝，然后突然发现固定按键板部分的螺丝好像是一样的，就打了它的主意，替换了一下，让那个拧不了的螺丝去干不太重要的活儿了。
+]]></content>
+      <categories>
+        <category>医工</category>
+      </categories>
+      <tags>
+        <tag>维修</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从头开始学C语言-第一篇-基本结构</title>
+    <url>//c2120366.html</url>
+    <content><![CDATA[前言由于做单片机项目需要用到C语言，之前一直用的米思奇图形化编程，那个只能完成一下作业，所以只能学一下C的语法了，也方便看AI给出的代码。
+开篇大吉！
+基本结构C语言程序是从上到下，逐行运行的。
+预处理指令（以#开头）预处理阶段（编译前）执行的指令，无分号结尾，常见类型：
+
+头文件： #include &lt;头文件名&gt; 或 #include &quot;自定义头文件.h&quot;，引入标准库 &#x2F; 自定义函数的声明（如stdio.h提供输入输出、stdlib.h提供内存管理,可以看成工具箱，函数就是工具箱里面的工具。
+宏定义： #define 宏名 常量/表达式（如#define PI 3.14159），编译前替换文本。
+条件编译： #ifdef/#ifndef/#endif，控制代码是否编译。
+
+全局声明（可选）在所有函数外部定义的 变量&#x2F;函数 声明，作用域覆盖整个程序，注意每句结尾加分号。
+
+全局变量： int global_num = 10;（生命周期贯穿程序运行）。
+函数原型声明： int add(int a, int b);（声明自定义函数的返回值、参数，方便后续调用）。
+
+主函数 main() —— 程序入口必须唯一，程序从 main() 的第一行开始执行，结束于 main() 的返回。
+结构如下：
+// 函数头：返回值类型 函数名(参数列表)int main() &#123;  // 也可写int main(int argc, char *argv[])（命令行参数）    // 执行语句：完成具体逻辑，必须以分号结尾    printf(&quot;Hello World&quot;);  // 输出语句    return 0;  // 返回值：0表示程序正常结束，非0通常表示错误&#125;
+
+自定义函数（可选）实现模块化功能，结构为：返回值类型 函数名(参数列表) { 函数体 }，示例：
+// 自定义加法函数int add(int a, int b) &#123;    return a + b;  // 返回计算结果&#125;
+
+注释不参与编译，仅用于说明代码，两种格式：
+
+单行注释：// 注释内容
+多行注释：/* 注释内容 */（可跨多行）
+
+完整的 C 程序结构示例// 1. 预处理指令：引入标准输入输出库#include &lt;stdio.h&gt;// 2. 全局声明：全局变量 + 函数原型#define MAX 100  // 宏定义int global_var = 50;  // 全局变量int calculate(int x, int y);  // 函数原型声明// 3. 主函数：程序入口int main() &#123;    // 局部变量声明    int num1 = 10, num2 = 20;    int result;    // 执行语句：调用自定义函数、输出结果    result = calculate(num1, num2);    printf(&quot;计算结果：%d\n&quot;, result);    printf(&quot;全局变量值：%d\n&quot;, global_var);    return 0;  // 程序正常结束&#125;// 4. 自定义函数：实现具体功能int calculate(int x, int y) &#123;    return x + y + global_var;  // 使用全局变量&#125;]]></content>
+      <categories>
+        <category>C语言学习</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>C语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>纽邦e360呼吸机维修模式</title>
+    <url>//77de0185.html</url>
+    <content><![CDATA[前言此篇文章记录内容会更新，暂时只了解到这么多。附一篇参考文章
+如何进入维修模式关机，长按‘确认’旋钮键再开机，确认进入了维修模式后即可松开按键。
+校准
+
+
+代码
+项目
+
+
+
+D4
+呼出阀校正
+
+
+D9
+流量传感器校正
+
+
+]]></content>
+      <categories>
+        <category>医工</category>
+      </categories>
+      <tags>
+        <tag>维修</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C语言scanf函数</title>
+    <url>//94a943a.html</url>
+    <content><![CDATA[scanf函数是 C 语言核心的格式化输入函数
+什么是scanf函数
+一个给变量赋值的函数
+将输入的值赋给变量
+最常用的给变量赋值的方式
+
+scanf函数的格式scnaf(&quot;占位符&quot;, 变量的地址)
+地址就是变量的前面加上&amp;符号，注意与printf区分
+#include &lt;stdio.h&gt;  // 使用scanf必须包含头文件
+
+
+地址地址是一个容器。
+什么是地址定义变量的时候创建容器变量名就是容器的名字赋值的时候往容器里放东西
+告诉容器的名字就可以将内容提取出来
+如何使用地址在变量名前加上&amp;就可以了。
+如何使用scanf函数示例：
+#include &lt;stdio.h&gt;int main() &#123;    int num1, num2;    printf(&quot;输入两个整数（空格分隔）：&quot;);    int res = scanf(&quot;%d %d&quot;, &amp;num1, &amp;num2); // 空格分隔占位符，输入时可用空格/回车分隔    printf(&quot;读取结果：num1=%d, num2=%d\n&quot;, num1, num2);    printf(&quot;scanf返回值：%d（成功读取的变量数）\n&quot;, res);    return 0;&#125;
+
+
+scanf与printf的主要区别这两个函数的主要区别在参数列表中。
+
+printf()函数使用变量、常量和表达式。
+scanf()函数使用指向变量的指针。
+
+]]></content>
+      <categories>
+        <category>C语言学习</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>C语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2025·蕲春中继SSTV之夜</title>
+    <url>//333a832f.html</url>
+    <content><![CDATA[2025·蕲春中继SSTV之夜
+位置：湖北省 黄冈市 蕲春县频率：439.725 &#x2F; -9 &#x2F; TSQ123模式：FM时间：2025年 12月 12日 BJT 20:00时长：50 分钟软件：手机端Robot36(接收)SSTV Encoder(发送) &#x2F; 电脑端MMSSTV(发送接收)
+
+
+活动简介12 月 12 日晚八点，蕲春中继脱离了武汉900俱乐部大链路，迎来了一场“图像派对”——SSTV 发送活动。没有门槛，没有排名，各位友台在BH6RVI主控的带领下，依次有序的上台进行发送信号，让一张张图片在FM载波里慢慢展开。那一晚，熟悉的 CQ 呼叫暂歇，取而代之的是滴滴答答、灵动清脆的 “电波鸟叫”。这独特的信号旋律，串联起天南海北的无线电爱好者，让冰冷的电波变成了传递影像与热忱的温暖纽带，成为火腿族们心中一段难忘的共同记忆。
+图片展示先报告一下我的设备，我使用的设备是FTM-510D，通过一根五米的馈线连接上了窗台的NL-770R天线，通过机内录音的方式，把音频通过PC软件MMSSTV解码复原为图像。由于MMSTV只能通过麦克风录音的方式解码，所以我就用叠汉堡的形式把耳机的麦克风塞到他自己嘴里了哈哈，请看下图。  接下来我就展示一下活动期间，我接收到的13位友台发送的图片吧(包括我自己发的那张嘿嘿)。
+
+第一张(BH6QGI)，编码格式：Martin 2
+
+第二张(BH6SNJ)，编码格式：Martin 1
+
+第三张(蕲春205)，编码格式：Martin 1
+
+第四张(呼号没有抄清)，编码格式：PD 50
+
+第五张(BH6SNJ)，编码格式：Martin 1
+
+第六张(BH6RVI)，编码格式：PD 120
+
+第七张(BH6QGI)，编码格式：PD 120
+
+第八张(BD6KHE)，编码格式：Robot 36
+
+第九张(BH6STV)，编码格式：Martin 1
+
+第十张(BH6STV)，编码格式：Martin 1
+
+第十一张(蕲春205)，编码格式：Martin 1
+
+第十二张(BH6STV)，编码格式：Robot 36
+
+第十三张(BH6RVI)，编码格式：PD 290
+
+
+SSTV科普我在想是要把科普写在本篇最后呢，还是另开一篇比较好……为了文章简洁明了还是单开一篇吧。先在这预留个超链接 点我可前往。
+]]></content>
+      <categories>
+        <category>业余无线电</category>
+      </categories>
+      <tags>
+        <tag>记录</tag>
+        <tag>SSTV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C语言if语句while与for循环</title>
+    <url>//57fac3fe.html</url>
+    <content><![CDATA[if语句什么是if语句条件判断如果… ，那就…最基础的条件判断语句
+基本格式if后不需要加分号
+if (条件)&#123;    程序;&#125;
+
+赋值符号与比较符号赋值：a = 1比较：a == 1if语句中用到的是 ==
+什么是if - else语句如果(if)… 就…否则(else)…
+基本格式if后要紧接着else
+if (条件)&#123;    程序;&#125;else&#123;    程序;&#125;
+
+if - else if语句如果(if)… 就…如果(else if)… 就…此处可以多个else if否则(else)…
+理解程序从上到下执行，进行if判断，如果都不满足，则会输出最后的else。
+注意：条件一定是互相不包括的
+if-else if与多个if的区别
+if-else if: 如果判定成功则跳过下面的所有else if和else，直接输出结果。多个if: 从上到下依次进行判定，上方的赋值可以被接下来的if接收。
+
+if嵌套从外层向内层逐层判断。注意缩进。很好理解这里就不展开了。
+逻辑运算符大小
+
+
+符号
+含义
+
+
+
+&lt;
+小于
+
+
+&gt;
+大于
+
+
+==
+等于
+
+
+&lt;=
+小于等于
+
+
+&gt;=
+大于等于
+
+
+与、或、非
+
+
+符号
+含义
+
+
+
+&amp;&amp;
+与(两者同时成立)
+
+
+&#96;
+
+
+
+!
+非(不成立)
+
+
+!=
+不等于
+
+
+‘非’不经常用，经常用’不等于’
+演示if (i == 5 &amp;&amp; j == 5)&#123;    printf(&quot;i和j都等于5 \r\n&quot;);&#125;if (i == 5 || j == 5)&#123;    printf(&quot;i和j之间至少有一个等于5 \r\n&quot;);&#125;if (i != j)&#123;    printf(&quot;i和j不相等 \r\n&quot;);&#125;
+
+while循环一直循环执行，直到不满足条件。
+格式while (循环条件)&#123;    循环内执行的程序;&#125;
+
+自增语句
+i++ : 先执行相应操作，再自增1
+++i : 先自增1，再执行相应操作
+
+// 结果：a=0 b=1int a = 0;int b =0;a = b++;// 结果：a=1 b=1int a = 0;int b = 0;a = ++b;
+
+for循环注意：不强制要求定义计数器 —— 计数器只是for循环最常用的写法
+格式for (初始化表达式; 条件表达式; 更新表达式)&#123;    循环内执行的程序;&#125;
+
+初始化表达式：仅在循环开始前执行 1 次
+条件表达式：成立则执行循环
+更新表达式：在每次循环体执行完毕后执行
+计数器本质是：初始化子句定义变量、条件子句判断数值、更新子句自增 &#x2F; 自减 —— 这只是三个子句的 “常用组合”，而非唯一组合。
+
+示例for (int i = 0; i &lt; 7; i++)&#123;    printf(&quot;%d&quot;, i);&#125;
+
+注意事项
+大括号内的程序作为循环执行的程序
+如果没有大括号，只执行一行程序(尽量不要这么写)
+for循环内定义的计数器只有循环内能用
+
+无限循环与break无限循环用一个永远成立的条件实现永不跳出的循环如：while(1 &lt; 2)是单片机里必备的部分常见表达形式：while(1)
+break可以使用break语句跳出循环只能跳出一层循环常用于跳出无限循环
+普通循环不常用break跳出普通循环应当用循环条件来判断
+循环的嵌套!程序从上到下依次执行！当未跳出小循环时，不执行大循环。大循环每次执行到小循环时，都会再次判断小循环成立条件。
+do-while循环先执行循环内的程序，再判断是否符合循环条件，若不符合条件就不进入第二次循环。也就是说循环内代码不管符不符合循环条件，至少都会被执行一次。单片机中不常用，认识即可。注意最后的分号
+示例scanf(&quot;%d&quot;, &amp;i);do&#123;    printf(&quot;%d\r\n&quot;, i);    i++;&#125;while (i &lt;= 10);]]></content>
+      <categories>
+        <category>C语言学习</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>C语言</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown基础语法演示</title>
     <url>//7ff07cb3.html</url>
     <content><![CDATA[Markdown基本语法教程前言写这篇教程的目的呢，其一想帮助到准备使用Markdown，但还不了解Markdown语法的人，其二是练习一下，加深一下我对Markdown语法的记忆，实不相瞒，这篇文章就是我第一次使用Markdown语法所作。  
@@ -960,50 +1166,37 @@ a %= 5 → a=a%5
       </tags>
   </entry>
   <entry>
-    <title>2025·蕲春中继SSTV之夜</title>
-    <url>//333a832f.html</url>
-    <content><![CDATA[2025·蕲春中继SSTV之夜
-位置：湖北省 黄冈市 蕲春县频率：439.725 &#x2F; -9 &#x2F; TSQ123模式：FM时间：2025年 12月 12日 BJT 20:00时长：50 分钟软件：手机端Robot36(接收)SSTV Encoder(发送) &#x2F; 电脑端MMSSTV(发送接收)
+    <title>测试用</title>
+    <url>//5851a8db.html</url>
+    <content><![CDATA[测试一下图片后面是一个图片这是图片后面的文字
+]]></content>
+  </entry>
+  <entry>
+    <title>主页加载动画</title>
+    <url>//15001891.html</url>
+    <content><![CDATA[博客功能更新 —— 增加主页加载动画使用wowjs插件，此插件还能作用于外挂标签页，暂时没研究，先在此做个记号。
+安装插件npm install hexo-butterfly-wowjs --save
 
+添加配置文件在站点配置文件_config.yml添加以下配置
+# wowjs动画加载效果wowjs:  enable: true #控制动画开关。true是打开，false是关闭  priority: 10 #过滤器优先级  mobile: false #移动端是否启用，默认移动端禁用  animateitem:    - class: recent-post-item #必填项，需要添加动画的元素的class      style: animate__zoomIn #必填项，需要添加的动画      duration: 1.5s #选填项，动画持续时间，单位可以是ms也可以是s。例如3s，700ms。      delay: 200ms #选填项，动画开始的延迟时间，单位可以是ms也可以是s。例如3s，700ms。      offset: 30 #选填项，开始动画的距离（相对浏览器底部）      iteration: 1 #选填项，动画重复的次数    - class: card-widget      style: animate__zoomIn      dalay: 200ms    - class: flink-list-card      style: animate__flipInY      duration: 3s    - class: flink-list-card      style: animate__animated      duration: 3s    - class: article-sort-item      style: animate__alideInRight      duration: 1.5s    - class: flink-list-card      style: animate__flipInY      duration: 3s    - class: flink-list-card      style: animate__animated      duration: 3s  animate_css: https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css  wow_js: https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js  wow_init_js: https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js
 
-活动简介12 月 12 日晚八点，蕲春中继脱离了武汉900俱乐部大链路，迎来了一场“图像派对”——SSTV 发送活动。没有门槛，没有排名，各位友台在BH6RVI主控的带领下，依次有序的上台进行发送信号，让一张张图片在FM载波里慢慢展开。那一晚，熟悉的 CQ 呼叫暂歇，取而代之的是滴滴答答、灵动清脆的 “电波鸟叫”。这独特的信号旋律，串联起天南海北的无线电爱好者，让冰冷的电波变成了传递影像与热忱的温暖纽带，成为火腿族们心中一段难忘的共同记忆。
-图片展示先报告一下我的设备，我使用的设备是FTM-510D，通过一根五米的馈线连接上了窗台的NL-770R天线，通过机内录音的方式，把音频通过PC软件MMSSTV解码复原为图像。由于MMSTV只能通过麦克风录音的方式解码，所以我就用叠汉堡的形式把耳机的麦克风塞到他自己嘴里了哈哈，请看下图。  接下来我就展示一下活动期间，我接收到的13位友台发送的图片吧(包括我自己发的那张嘿嘿)。
-
-第一张(BH6QGI)，编码格式：Martin 2
-
-第二张(BH6SNJ)，编码格式：Martin 1
-
-第三张(蕲春205)，编码格式：Martin 1
-
-第四张(呼号没有抄清)，编码格式：PD 50
-
-第五张(BH6SNJ)，编码格式：Martin 1
-
-第六张(BH6RVI)，编码格式：PD 120
-
-第七张(BH6QGI)，编码格式：PD 120
-
-第八张(BD6KHE)，编码格式：Robot 36
-
-第九张(BH6STV)，编码格式：Martin 1
-
-第十张(BH6STV)，编码格式：Martin 1
-
-第十一张(蕲春205)，编码格式：Martin 1
-
-第十二张(BH6STV)，编码格式：Robot 36
-
-第十三张(BH6RVI)，编码格式：PD 290
-
-
-SSTV科普我在想是要把科普写在本篇最后呢，还是另开一篇比较好……为了文章简洁明了还是单开一篇吧。先在这预留个超链接 点我可前往。
+参考文章参考文章
 ]]></content>
       <categories>
-        <category>业余无线电</category>
+        <category>博客功能更新</category>
       </categories>
       <tags>
         <tag>记录</tag>
-        <tag>SSTV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>//4a17b156.html</url>
+    <content><![CDATA[本博客于2025年12月10日诞生，这是第一篇文章，现在的博客干干净净，连背景图片都没有，接下来我会逐步配置和装修我的博客的，嘿嘿，期待以后的样子。  
+Markdown的基本语法我还不会，先在这留一个Markdown语法的链接在这方便以后查找吧。
+]]></content>
+      <tags>
+        <tag>记录</tag>
       </tags>
   </entry>
   <entry>
@@ -1061,24 +1254,13 @@ QSL 卡片新形式：传统 QSL 卡片是纸质的，而 SSTV 可以发送电�
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>//4a17b156.html</url>
-    <content><![CDATA[本博客于2025年12月10日诞生，这是第一篇文章，现在的博客干干净净，连背景图片都没有，接下来我会逐步配置和装修我的博客的，嘿嘿，期待以后的样子。  
-Markdown的基本语法我还不会，先在这留一个Markdown语法的链接在这方便以后查找吧。
-]]></content>
-      <tags>
-        <tag>记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>测试用</title>
-    <url>//5851a8db.html</url>
-    <content><![CDATA[测试一下图片后面是一个图片这是图片后面的文字
-]]></content>
-  </entry>
-  <entry>
     <title>哔哔一下</title>
     <url>/artitalk/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>标签页</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -1361,29 +1543,14 @@ h6::before {
 }]]></content>
   </entry>
   <entry>
-    <title>标签页</title>
-    <url>/tags/index.html</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/items_pinned_to_model.json</url>
-    <content><![CDATA[{"FileMetadata":{"LastSavedVTubeStudioVersion":"1.29.0","LastSavedPlatform":"Steam","LastSavedDateUTC":"Tuesday, 30 July 2024, 10:02:01","LastSavedDateLocalTime":"Tuesday, 30 July 2024, 18:02:01","LastSavedDateUnixMillisecondTimestamp":"1722333721376"},"SceneName":"","SceneGroupName":"","SceneModel":"","SceneID":"","Items":[]}]]></content>
-  </entry>
-  <entry>
-    <title>友情链接</title>
-    <url>/link/index.html</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title></title>
     <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/Zzz.exp3.json</url>
     <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"SleepButton","Value":1,"Blend":"Add"}]}]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E4%BA%91%E5%90%9Ekumo.model3.json</url>
-    <content><![CDATA[{"Version":3,"FileReferences":{"Moc":"云吞kumo.moc3","Textures":["云吞kumo.4096/texture_00.png","云吞kumo.4096/texture_01.png","云吞kumo.4096/texture_02.png","云吞kumo.4096/texture_03.png","云吞kumo.4096/texture_04.png","云吞kumo.4096/texture_05.png","云吞kumo.4096/texture_06.png","云吞kumo.4096/texture_07.png","云吞kumo.4096/texture_08.png","云吞kumo.4096/texture_09.png","云吞kumo.4096/texture_10.png"],"Physics":"云吞kumo.physics3.json","DisplayInfo":"云吞kumo.cdi3.json"},"Groups":[{"Target":"Parameter","Name":"LipSync","Ids":[]},{"Target":"Parameter","Name":"EyeBlink","Ids":["ParamEyeLOpen","ParamEyeROpen"]}]}]]></content>
+    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/items_pinned_to_model.json</url>
+    <content><![CDATA[{"FileMetadata":{"LastSavedVTubeStudioVersion":"1.29.0","LastSavedPlatform":"Steam","LastSavedDateUTC":"Tuesday, 30 July 2024, 10:02:01","LastSavedDateLocalTime":"Tuesday, 30 July 2024, 18:02:01","LastSavedDateUnixMillisecondTimestamp":"1722333721376"},"SceneName":"","SceneGroupName":"","SceneModel":"","SceneID":"","Items":[]}]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1392,38 +1559,13 @@ h6::before {
   </entry>
   <entry>
     <title></title>
+    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E4%BA%91%E5%90%9Ekumo.model3.json</url>
+    <content><![CDATA[{"Version":3,"FileReferences":{"Moc":"云吞kumo.moc3","Textures":["云吞kumo.4096/texture_00.png","云吞kumo.4096/texture_01.png","云吞kumo.4096/texture_02.png","云吞kumo.4096/texture_03.png","云吞kumo.4096/texture_04.png","云吞kumo.4096/texture_05.png","云吞kumo.4096/texture_06.png","云吞kumo.4096/texture_07.png","云吞kumo.4096/texture_08.png","云吞kumo.4096/texture_09.png","云吞kumo.4096/texture_10.png"],"Physics":"云吞kumo.physics3.json","DisplayInfo":"云吞kumo.cdi3.json"},"Groups":[{"Target":"Parameter","Name":"LipSync","Ids":[]},{"Target":"Parameter","Name":"EyeBlink","Ids":["ParamEyeLOpen","ParamEyeROpen"]}]}]]></content>
+  </entry>
+  <entry>
+    <title></title>
     <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E5%93%AD%E6%B3%A3.exp3.json</url>
     <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"CryButton","Value":1,"Blend":"Add"}]}]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E6%89%8B%E6%9F%84.exp3.json</url>
-    <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"HandGameButton3","Value":1,"Blend":"Add"}]}]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E6%97%A0%E8%AF%AD.exp3.json</url>
-    <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"wuyu","Value":1,"Blend":"Add"}]}]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E4%BA%91%E5%90%9Ekumo.vtube.json</url>
-    <content><![CDATA[{"Version":1,"Name":"云吞kumo","ModelID":"5fd4067abc884fb593f1ac9697acc319","FileReferences":{"Icon":"ico_云吞kumo.png","Model":"云吞kumo.model3.json","IdleAnimation":"IDLE.motion3.json","IdleAnimationWhenTrackingLost":""},"ModelSaveMetadata":{"LastSavedVTubeStudioVersion":"1.29.0","LastSavedPlatform":"Steam","LastSavedDateUTC":"Tuesday, 30 July 2024, 10:02:01","LastSavedDateLocalTime":"Tuesday, 30 July 2024, 18:02:01","LastSavedDateUnixMillisecondTimestamp":"1722333721359"},"SavedModelPosition":{"Position":{"x":-62.95234680175781,"y":-28.046724319458008,"z":0},"Rotation":{"x":0,"y":0,"z":0,"w":1},"Scale":{"x":1.0323069095611572,"y":1.0323069095611572,"z":1}},"ModelPositionMovement":{"Use":false,"X":0,"Y":0,"Z":0,"SmoothingX":10,"SmoothingY":10,"SmoothingZ":10},"ItemSettings":{"OnlyMoveWhenPinned":false,"AllowNormalHotkeyTriggers":true,"Multiplier_HeadAngleX":1,"Multiplier_HeadAngleY":1,"Multiplier_HeadAngleZ":1,"Shift_HeadAngleX":0,"Shift_HeadAngleY":0,"Smoothing_HeadAngleX":15,"Smoothing_HeadAngleY":15,"Smoothing_HeadAngleZ":15},"PhysicsSettings":{"Use":true,"UseLegacyPhysics":false,"Live2DPhysicsFPS":3,"PhysicsStrength":50,"WindStrength":0,"DraggingPhysicsStrength":0},"GeneralSettings":{"TimeUntilTrackingLostIdleAnimation":0,"WorkshopSharingForbidden":true,"EnableExpressionSaving":false},"ParameterSettings":[{"Folder":"","Name":"Face Left/Right Rotation","Input":"FaceAngleX","InputRangeLower":-30,"InputRangeUpper":30,"OutputRangeLower":-30,"OutputRangeUpper":30,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamAngleX","Smoothing":15,"Minimized":false},{"Folder":"","Name":"Face Up/Down Rotation","Input":"FaceAngleY","InputRangeLower":-20,"InputRangeUpper":20,"OutputRangeLower":-30,"OutputRangeUpper":30,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamAngleY","Smoothing":15,"Minimized":false},{"Folder":"","Name":"Face Lean Rotation","Input":"FaceAngleZ","InputRangeLower":-30,"InputRangeUpper":30,"OutputRangeLower":-30,"OutputRangeUpper":30,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamAngleZ","Smoothing":30,"Minimized":false},{"Folder":"","Name":"Body Rotation X","Input":"FaceAngleX","InputRangeLower":-30,"InputRangeUpper":30,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBodyAngleX","Smoothing":20,"Minimized":false},{"Folder":"","Name":"Body Rotation Z","Input":"FaceAngleZ","InputRangeLower":-30,"InputRangeUpper":30,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBodyAngleZ","Smoothing":20,"Minimized":false},{"Folder":"","Name":"Body Rotation Y","Input":"FaceAngleY","InputRangeLower":-30,"InputRangeUpper":30,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBodyAngleY","Smoothing":20,"Minimized":false},{"Folder":"","Name":"Mouth Smile","Input":"MouthSmile","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamMouthForm","Smoothing":0,"Minimized":false},{"Folder":"","Name":"Mouth Open","Input":"MouthOpen","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":2.0999999046325684,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamMouthOpenY","Smoothing":0,"Minimized":false},{"Folder":"","Name":"Auto Breath","Input":"","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":true,"OutputLive2D":"ParamBreath","Smoothing":0,"Minimized":false},{"Folder":"","Name":"Eye Open Left","Input":"EyeOpenLeft","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":1.899999976158142,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamEyeLOpen","Smoothing":10,"Minimized":false},{"Folder":"","Name":"Eye Open Right","Input":"EyeOpenRight","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":1.899999976158142,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamEyeROpen","Smoothing":10,"Minimized":false},{"Folder":"","Name":"Eye X","Input":"EyeRightX","InputRangeLower":-1,"InputRangeUpper":1,"OutputRangeLower":1,"OutputRangeUpper":-1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamEyeBallX","Smoothing":8,"Minimized":false},{"Folder":"","Name":"Eye Y","Input":"EyeRightY","InputRangeLower":-1,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamEyeBallY","Smoothing":8,"Minimized":false},{"Folder":"","Name":"Brow Height Right","Input":"BrowRightY","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBrowRY","Smoothing":10,"Minimized":false},{"Folder":"","Name":"Brow Height Left","Input":"BrowLeftY","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBrowLY","Smoothing":10,"Minimized":false},{"Folder":"","Name":"Brow Form Left","Input":"BrowLeftY","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBrowLForm","Smoothing":15,"Minimized":false},{"Folder":"","Name":"Brow Form Right","Input":"BrowRightY","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBrowRForm","Smoothing":15,"Minimized":false},{"Folder":"","Name":"","Input":"MouthSmile","InputRangeLower":0,"InputRangeUpper":0.699999988079071,"OutputRangeLower":0,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"smile","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"MouthX","InputRangeLower":-0.699999988079071,"InputRangeUpper":0.699999988079071,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"MouthX","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"JawOpen","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"chin","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"CheekPuff","InputRangeLower":0,"InputRangeUpper":0.699999988079071,"OutputRangeLower":0,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"puff","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_LeftTrigger","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonLT","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_RightTrigger","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonRT","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_LeftShoulder","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonLB","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_LeftShoulder","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ChangeBT_L","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_RightShoulder","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonRB","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_RightShoulder","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ChangeBT_R","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_LeftStickY","InputRangeLower":-1,"InputRangeUpper":1,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"LS_Y","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_LeftStickX","InputRangeLower":-1,"InputRangeUpper":1,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"LS_X","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_RightStickX","InputRangeLower":-1,"InputRangeUpper":1,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"RS_X","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_RightStickY","InputRangeLower":-1,"InputRangeUpper":1,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"RS_Y","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_16","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonL","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_6","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonR","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_7","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonR2","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_9","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonR3","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_8","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonR4","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_18","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonL2","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_17","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonL3","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_19","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonL4","Smoothing":20,"Minimized":false}],"Hotkeys":[{"HotkeyID":"8414676d2a4d4cabbff0cfa24ccae094","Name":"水印","Action":"ToggleExpression","File":"水印.exp3.json","Folder":"","Position":{"X":0,"Y":0,"Z":0,"Rotation":0},"ColorOverlay":{"On":false,"IsStaticColor":false,"Display":-1,"WindowName":"","IncludeLeft":false,"IncludeMid":false,"IncludeRight":false,"BaseValue":0,"OverlayValue":0,"Smoothing":0,"IncludeItems":false,"StaticColor":{"r":0,"g":0,"b":0,"a":1}},"ColorScreenMultiplyPreset":{"ArtMeshMultiplyAndScreenColors":[]},"HandGestureSettings":{"GestureLeft":"","GestureRight":"","GestureCombinator":"AND","AllowMirroredGesture":false,"DeactivateExpWhenGestureNotDetected":false,"SecondsUntilDetection":0.5,"SecondsDetected":0,"PercentDetected":0},"LoadModelSettings":{"LoadAtCurrentPosition":true},"Triggers":{"Trigger1":"N1","Trigger2":"","Trigger3":"","ScreenButton":-1},"IsGlobal":true,"IsActive":true,"Minimized":false,"StopsOnLastFrame":false,"DeactivateAfterKeyUp":false,"OnlyLoadOneRandomItem":false,"DeactivateAfterSeconds":false,"DeactivateAfterSecondsAmount":10,"FadeSecondsAmount":0.5,"OnScreenHotkeyColor":{"r":1,"g":1,"b":1,"a":1}},{"HotkeyID":"346ddc1551d24634915f0197e93d5ffa","Name":"","Action":"TriggerAnimation","File":"红温.motion3.json","Folder":"","Position":{"X":0,"Y":0,"Z":0,"Rotation":0},"ColorOverlay":{"On":false,"IsStaticColor":false,"Display":-1,"WindowName":"","IncludeLeft":false,"IncludeMid":false,"IncludeRight":false,"BaseValue":0,"OverlayValue":0,"Smoothing":0,"IncludeItems":false,"StaticColor":{"r":0,"g":0,"b":0,"a":1}},"ColorScreenMultiplyPreset":{"ArtMeshMultiplyAndScreenColors":[]},"HandGestureSettings":{"GestureLeft":"","GestureRight":"","GestureCombinator":"AND","AllowMirroredGesture":false,"DeactivateExpWhenGestureNotDetected":false,"SecondsUntilDetection":0.5,"SecondsDetected":0,"PercentDetected":0},"LoadModelSettings":{"LoadAtCurrentPosition":true},"Triggers":{"Trigger1":"N2","Trigger2":"","Trigger3":"","ScreenButton":-1},"IsGlobal":true,"IsActive":true,"Minimized":false,"StopsOnLastFrame":true,"DeactivateAfterKeyUp":false,"OnlyLoadOneRandomItem":false,"DeactivateAfterSeconds":false,"DeactivateAfterSecondsAmount":10,"FadeSecondsAmount":0.10000000149011612,"OnScreenHotkeyColor":{"r":1,"g":1,"b":1,"a":1}},{"HotkeyID":"97f738b3e2c449ca95353f88aa15fa9e","Name":"","Action":"ToggleExpression","File":"手柄.exp3.json","Folder":"","Position":{"X":0,"Y":0,"Z":0,"Rotation":0},"ColorOverlay":{"On":false,"IsStaticColor":false,"Display":-1,"WindowName":"","IncludeLeft":false,"IncludeMid":false,"IncludeRight":false,"BaseValue":0,"OverlayValue":0,"Smoothing":0,"IncludeItems":false,"StaticColor":{"r":0,"g":0,"b":0,"a":1}},"ColorScreenMultiplyPreset":{"ArtMeshMultiplyAndScreenColors":[]},"HandGestureSettings":{"GestureLeft":"","GestureRight":"","GestureCombinator":"AND","AllowMirroredGesture":false,"DeactivateExpWhenGestureNotDetected":false,"SecondsUntilDetection":0.5,"SecondsDetected":0,"PercentDetected":0},"LoadModelSettings":{"LoadAtCurrentPosition":true},"Triggers":{"Trigger1":"N3","Trigger2":"","Trigger3":"","ScreenButton":-1},"IsGlobal":true,"IsActive":true,"Minimized":false,"StopsOnLastFrame":false,"DeactivateAfterKeyUp":false,"OnlyLoadOneRandomItem":false,"DeactivateAfterSeconds":false,"DeactivateAfterSecondsAmount":10,"FadeSecondsAmount":0.5,"OnScreenHotkeyColor":{"r":1,"g":1,"b":1,"a":1}}],"HotkeySettings":{"UseOnScreenHotkeys":false,"UseKeyboardHotkeys":true,"SendOnScreenHotkeysToPC":true,"OnScreenHotkeyAlpha":75},"ArtMeshDetails":{"ArtMeshesExcludedFromPinning":[],"ArtMeshesThatDeleteItemsOnDrop":[],"ArtMeshSceneLightingMultipliers":[],"ArtMeshMultiplyAndScreenColors":[]},"ParameterCustomization":{"ParametersExcludedFromVNetSmoothing":[]},"PhysicsCustomizationSettings":{"PhysicsMultipliersPerPhysicsGroup":[],"WindMultipliersPerPhysicsGroup":[],"DraggingPhysicsMultipliersPerPhysicsGroup":[]},"FolderInfo":{"HotkeyFolders":[],"ConfigItemFolders":[]},"SavedActiveExpressions":[]}]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E6%B5%81%E6%B1%97.exp3.json</url>
-    <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"liuhan","Value":1,"Blend":"Add"}]}]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E6%B0%B4%E5%8D%B0.exp3.json</url>
-    <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"flag","Value":1,"Blend":"Add"}]}]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E7%9E%B3%E5%AD%94%E7%BC%A9%E5%B0%8F.exp3.json</url>
-    <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"eyesmallerButton","Value":1,"Blend":"Add"}]}]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1432,8 +1574,33 @@ h6::before {
   </entry>
   <entry>
     <title></title>
+    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E6%B5%81%E6%B1%97.exp3.json</url>
+    <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"liuhan","Value":1,"Blend":"Add"}]}]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E4%BA%91%E5%90%9Ekumo.vtube.json</url>
+    <content><![CDATA[{"Version":1,"Name":"云吞kumo","ModelID":"5fd4067abc884fb593f1ac9697acc319","FileReferences":{"Icon":"ico_云吞kumo.png","Model":"云吞kumo.model3.json","IdleAnimation":"IDLE.motion3.json","IdleAnimationWhenTrackingLost":""},"ModelSaveMetadata":{"LastSavedVTubeStudioVersion":"1.29.0","LastSavedPlatform":"Steam","LastSavedDateUTC":"Tuesday, 30 July 2024, 10:02:01","LastSavedDateLocalTime":"Tuesday, 30 July 2024, 18:02:01","LastSavedDateUnixMillisecondTimestamp":"1722333721359"},"SavedModelPosition":{"Position":{"x":-62.95234680175781,"y":-28.046724319458008,"z":0},"Rotation":{"x":0,"y":0,"z":0,"w":1},"Scale":{"x":1.0323069095611572,"y":1.0323069095611572,"z":1}},"ModelPositionMovement":{"Use":false,"X":0,"Y":0,"Z":0,"SmoothingX":10,"SmoothingY":10,"SmoothingZ":10},"ItemSettings":{"OnlyMoveWhenPinned":false,"AllowNormalHotkeyTriggers":true,"Multiplier_HeadAngleX":1,"Multiplier_HeadAngleY":1,"Multiplier_HeadAngleZ":1,"Shift_HeadAngleX":0,"Shift_HeadAngleY":0,"Smoothing_HeadAngleX":15,"Smoothing_HeadAngleY":15,"Smoothing_HeadAngleZ":15},"PhysicsSettings":{"Use":true,"UseLegacyPhysics":false,"Live2DPhysicsFPS":3,"PhysicsStrength":50,"WindStrength":0,"DraggingPhysicsStrength":0},"GeneralSettings":{"TimeUntilTrackingLostIdleAnimation":0,"WorkshopSharingForbidden":true,"EnableExpressionSaving":false},"ParameterSettings":[{"Folder":"","Name":"Face Left/Right Rotation","Input":"FaceAngleX","InputRangeLower":-30,"InputRangeUpper":30,"OutputRangeLower":-30,"OutputRangeUpper":30,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamAngleX","Smoothing":15,"Minimized":false},{"Folder":"","Name":"Face Up/Down Rotation","Input":"FaceAngleY","InputRangeLower":-20,"InputRangeUpper":20,"OutputRangeLower":-30,"OutputRangeUpper":30,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamAngleY","Smoothing":15,"Minimized":false},{"Folder":"","Name":"Face Lean Rotation","Input":"FaceAngleZ","InputRangeLower":-30,"InputRangeUpper":30,"OutputRangeLower":-30,"OutputRangeUpper":30,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamAngleZ","Smoothing":30,"Minimized":false},{"Folder":"","Name":"Body Rotation X","Input":"FaceAngleX","InputRangeLower":-30,"InputRangeUpper":30,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBodyAngleX","Smoothing":20,"Minimized":false},{"Folder":"","Name":"Body Rotation Z","Input":"FaceAngleZ","InputRangeLower":-30,"InputRangeUpper":30,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBodyAngleZ","Smoothing":20,"Minimized":false},{"Folder":"","Name":"Body Rotation Y","Input":"FaceAngleY","InputRangeLower":-30,"InputRangeUpper":30,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBodyAngleY","Smoothing":20,"Minimized":false},{"Folder":"","Name":"Mouth Smile","Input":"MouthSmile","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamMouthForm","Smoothing":0,"Minimized":false},{"Folder":"","Name":"Mouth Open","Input":"MouthOpen","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":2.0999999046325684,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamMouthOpenY","Smoothing":0,"Minimized":false},{"Folder":"","Name":"Auto Breath","Input":"","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":true,"OutputLive2D":"ParamBreath","Smoothing":0,"Minimized":false},{"Folder":"","Name":"Eye Open Left","Input":"EyeOpenLeft","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":1.899999976158142,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamEyeLOpen","Smoothing":10,"Minimized":false},{"Folder":"","Name":"Eye Open Right","Input":"EyeOpenRight","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":1.899999976158142,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamEyeROpen","Smoothing":10,"Minimized":false},{"Folder":"","Name":"Eye X","Input":"EyeRightX","InputRangeLower":-1,"InputRangeUpper":1,"OutputRangeLower":1,"OutputRangeUpper":-1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamEyeBallX","Smoothing":8,"Minimized":false},{"Folder":"","Name":"Eye Y","Input":"EyeRightY","InputRangeLower":-1,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamEyeBallY","Smoothing":8,"Minimized":false},{"Folder":"","Name":"Brow Height Right","Input":"BrowRightY","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBrowRY","Smoothing":10,"Minimized":false},{"Folder":"","Name":"Brow Height Left","Input":"BrowLeftY","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBrowLY","Smoothing":10,"Minimized":false},{"Folder":"","Name":"Brow Form Left","Input":"BrowLeftY","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBrowLForm","Smoothing":15,"Minimized":false},{"Folder":"","Name":"Brow Form Right","Input":"BrowRightY","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ParamBrowRForm","Smoothing":15,"Minimized":false},{"Folder":"","Name":"","Input":"MouthSmile","InputRangeLower":0,"InputRangeUpper":0.699999988079071,"OutputRangeLower":0,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"smile","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"MouthX","InputRangeLower":-0.699999988079071,"InputRangeUpper":0.699999988079071,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"MouthX","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"JawOpen","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":-1,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"chin","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"CheekPuff","InputRangeLower":0,"InputRangeUpper":0.699999988079071,"OutputRangeLower":0,"OutputRangeUpper":1,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"puff","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_LeftTrigger","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonLT","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_RightTrigger","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonRT","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_LeftShoulder","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonLB","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_LeftShoulder","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ChangeBT_L","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_RightShoulder","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonRB","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_RightShoulder","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ChangeBT_R","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_LeftStickY","InputRangeLower":-1,"InputRangeUpper":1,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"LS_Y","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_LeftStickX","InputRangeLower":-1,"InputRangeUpper":1,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"LS_X","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_RightStickX","InputRangeLower":-1,"InputRangeUpper":1,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"RS_X","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XB_RightStickY","InputRangeLower":-1,"InputRangeUpper":1,"OutputRangeLower":-10,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"RS_Y","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_16","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonL","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_6","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonR","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_7","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonR2","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_9","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonR3","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_8","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonR4","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_18","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonL2","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_17","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonL3","Smoothing":20,"Minimized":false},{"Folder":"","Name":"","Input":"XInputGamepad1_19","InputRangeLower":0,"InputRangeUpper":1,"OutputRangeLower":0,"OutputRangeUpper":10,"ClampInput":false,"ClampOutput":false,"UseBlinking":false,"UseBreathing":false,"OutputLive2D":"ButtonL4","Smoothing":20,"Minimized":false}],"Hotkeys":[{"HotkeyID":"8414676d2a4d4cabbff0cfa24ccae094","Name":"水印","Action":"ToggleExpression","File":"水印.exp3.json","Folder":"","Position":{"X":0,"Y":0,"Z":0,"Rotation":0},"ColorOverlay":{"On":false,"IsStaticColor":false,"Display":-1,"WindowName":"","IncludeLeft":false,"IncludeMid":false,"IncludeRight":false,"BaseValue":0,"OverlayValue":0,"Smoothing":0,"IncludeItems":false,"StaticColor":{"r":0,"g":0,"b":0,"a":1}},"ColorScreenMultiplyPreset":{"ArtMeshMultiplyAndScreenColors":[]},"HandGestureSettings":{"GestureLeft":"","GestureRight":"","GestureCombinator":"AND","AllowMirroredGesture":false,"DeactivateExpWhenGestureNotDetected":false,"SecondsUntilDetection":0.5,"SecondsDetected":0,"PercentDetected":0},"LoadModelSettings":{"LoadAtCurrentPosition":true},"Triggers":{"Trigger1":"N1","Trigger2":"","Trigger3":"","ScreenButton":-1},"IsGlobal":true,"IsActive":true,"Minimized":false,"StopsOnLastFrame":false,"DeactivateAfterKeyUp":false,"OnlyLoadOneRandomItem":false,"DeactivateAfterSeconds":false,"DeactivateAfterSecondsAmount":10,"FadeSecondsAmount":0.5,"OnScreenHotkeyColor":{"r":1,"g":1,"b":1,"a":1}},{"HotkeyID":"346ddc1551d24634915f0197e93d5ffa","Name":"","Action":"TriggerAnimation","File":"红温.motion3.json","Folder":"","Position":{"X":0,"Y":0,"Z":0,"Rotation":0},"ColorOverlay":{"On":false,"IsStaticColor":false,"Display":-1,"WindowName":"","IncludeLeft":false,"IncludeMid":false,"IncludeRight":false,"BaseValue":0,"OverlayValue":0,"Smoothing":0,"IncludeItems":false,"StaticColor":{"r":0,"g":0,"b":0,"a":1}},"ColorScreenMultiplyPreset":{"ArtMeshMultiplyAndScreenColors":[]},"HandGestureSettings":{"GestureLeft":"","GestureRight":"","GestureCombinator":"AND","AllowMirroredGesture":false,"DeactivateExpWhenGestureNotDetected":false,"SecondsUntilDetection":0.5,"SecondsDetected":0,"PercentDetected":0},"LoadModelSettings":{"LoadAtCurrentPosition":true},"Triggers":{"Trigger1":"N2","Trigger2":"","Trigger3":"","ScreenButton":-1},"IsGlobal":true,"IsActive":true,"Minimized":false,"StopsOnLastFrame":true,"DeactivateAfterKeyUp":false,"OnlyLoadOneRandomItem":false,"DeactivateAfterSeconds":false,"DeactivateAfterSecondsAmount":10,"FadeSecondsAmount":0.10000000149011612,"OnScreenHotkeyColor":{"r":1,"g":1,"b":1,"a":1}},{"HotkeyID":"97f738b3e2c449ca95353f88aa15fa9e","Name":"","Action":"ToggleExpression","File":"手柄.exp3.json","Folder":"","Position":{"X":0,"Y":0,"Z":0,"Rotation":0},"ColorOverlay":{"On":false,"IsStaticColor":false,"Display":-1,"WindowName":"","IncludeLeft":false,"IncludeMid":false,"IncludeRight":false,"BaseValue":0,"OverlayValue":0,"Smoothing":0,"IncludeItems":false,"StaticColor":{"r":0,"g":0,"b":0,"a":1}},"ColorScreenMultiplyPreset":{"ArtMeshMultiplyAndScreenColors":[]},"HandGestureSettings":{"GestureLeft":"","GestureRight":"","GestureCombinator":"AND","AllowMirroredGesture":false,"DeactivateExpWhenGestureNotDetected":false,"SecondsUntilDetection":0.5,"SecondsDetected":0,"PercentDetected":0},"LoadModelSettings":{"LoadAtCurrentPosition":true},"Triggers":{"Trigger1":"N3","Trigger2":"","Trigger3":"","ScreenButton":-1},"IsGlobal":true,"IsActive":true,"Minimized":false,"StopsOnLastFrame":false,"DeactivateAfterKeyUp":false,"OnlyLoadOneRandomItem":false,"DeactivateAfterSeconds":false,"DeactivateAfterSecondsAmount":10,"FadeSecondsAmount":0.5,"OnScreenHotkeyColor":{"r":1,"g":1,"b":1,"a":1}}],"HotkeySettings":{"UseOnScreenHotkeys":false,"UseKeyboardHotkeys":true,"SendOnScreenHotkeysToPC":true,"OnScreenHotkeyAlpha":75},"ArtMeshDetails":{"ArtMeshesExcludedFromPinning":[],"ArtMeshesThatDeleteItemsOnDrop":[],"ArtMeshSceneLightingMultipliers":[],"ArtMeshMultiplyAndScreenColors":[]},"ParameterCustomization":{"ParametersExcludedFromVNetSmoothing":[]},"PhysicsCustomizationSettings":{"PhysicsMultipliersPerPhysicsGroup":[],"WindMultipliersPerPhysicsGroup":[],"DraggingPhysicsMultipliersPerPhysicsGroup":[]},"FolderInfo":{"HotkeyFolders":[],"ConfigItemFolders":[]},"SavedActiveExpressions":[]}]]></content>
+  </entry>
+  <entry>
+    <title></title>
     <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E7%94%9F%E6%B0%94.exp3.json</url>
     <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"angry","Value":1,"Blend":"Add"}]}]]></content>
+  </entry>
+  <entry>
+    <title>友情链接</title>
+    <url>/link/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E7%9E%B3%E5%AD%94%E7%BC%A9%E5%B0%8F.exp3.json</url>
+    <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"eyesmallerButton","Value":1,"Blend":"Add"}]}]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E7%88%B1%E5%BF%83.exp3.json</url>
+    <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"LoveButton","Value":1,"Blend":"Add"}]}]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1452,17 +1619,27 @@ h6::before {
   </entry>
   <entry>
     <title></title>
-    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E7%88%B1%E5%BF%83.exp3.json</url>
-    <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"LoveButton","Value":1,"Blend":"Add"}]}]]></content>
+    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E6%B0%B4%E5%8D%B0.exp3.json</url>
+    <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"flag","Value":1,"Blend":"Add"}]}]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/motions/%E7%BA%A2%E6%B8%A9.motion3.json</url>
-    <content><![CDATA[{"Version":3,"Meta":{"Duration":1.4,"Fps":30,"Loop":true,"AreBeziersRestricted":false,"CurveCount":1,"TotalSegmentCount":2,"TotalPointCount":5,"UserDataCount":0,"TotalUserDataSize":0},"Curves":[{"Target":"Parameter","Id":"HandNormalButton3","Segments":[0,0,1,0.444,0,0.889,1,1.333,1,0,1.4,1]}]}]]></content>
+    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E6%89%8B%E6%9F%84.exp3.json</url>
+    <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"HandGameButton3","Value":1,"Blend":"Add"}]}]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/%E6%97%A0%E8%AF%AD.exp3.json</url>
+    <content><![CDATA[{"Type":"Live2D Expression","Parameters":[{"Id":"wuyu","Value":1,"Blend":"Add"}]}]]></content>
   </entry>
   <entry>
     <title></title>
     <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/motions/IDLE.motion3.json</url>
     <content><![CDATA[{"Version":3,"Meta":{"Duration":10,"Fps":30,"Loop":true,"AreBeziersRestricted":false,"CurveCount":17,"TotalSegmentCount":171,"TotalPointCount":428,"UserDataCount":0,"TotalUserDataSize":0},"Curves":[{"Target":"Parameter","Id":"ParamCirclesAn","Segments":[0,0,0,10,200]},{"Target":"Parameter","Id":"hartIdle2","Segments":[0,8.377,1,0.133,9.348,0.267,10,0.4,10,2,1.3,0,1,1.833,0,2.367,10,2.9,10,2,3.833,0,1,4.356,0,4.878,10,5.4,10,2,6.333,0,1,6.833,0,7.333,10,7.833,10,2,8.833,0,1,9.222,0,9.611,5.789,10,8.558]},{"Target":"Parameter","Id":"hartIdle","Segments":[0,3.277,1,0.322,6.193,0.644,10,0.967,10,2,1.9,0,1,2.433,0,2.967,10,3.5,10,2,4.433,0,1,4.944,0,5.456,10,5.967,10,2,6.9,0,1,7.4,0,7.9,10,8.4,10,2,9.433,0,1,9.622,0,9.811,1.427,10,3.203]},{"Target":"Parameter","Id":"hartIdle3","Segments":[0,0,1,0.511,0,1.022,10,1.533,10,2,2.467,0,1,3,0,3.533,10,4.067,10,2,5,0,1,5.522,0,6.044,10,6.567,10,2,7.467,0,1,7.978,0,8.489,10,9,10,2,10,0]},{"Target":"Parameter","Id":"Param13","Segments":[0,-10,1,0.556,-10,1.111,10,1.667,10,1,2.222,10,2.778,-10,3.333,-10,1,3.889,-10,4.444,10,5,10,1,5.556,10,6.111,-10,6.667,-10,1,7.222,-10,7.778,10,8.333,10,1,8.889,10,9.444,-9.223,10,-9.977]},{"Target":"Parameter","Id":"Param14","Segments":[0,0,1,0.222,0,0.444,1,0.667,1,1,1.189,1,1.711,1,2.233,1,1,2.389,1,2.544,0,2.7,0,1,2.889,0,3.078,0,3.267,0,1,3.489,0,3.711,1,3.933,1,1,4.456,1,4.978,1,5.5,1,1,5.656,1,5.811,0,5.967,0,1,6.289,0,6.611,0,6.933,0,1,7.156,0,7.378,1,7.6,1,1,8.122,1,8.644,1,9.167,1,1,9.322,1,9.478,0,9.633,0,0,10,0]},{"Target":"Parameter","Id":"Param15","Segments":[0,0,0,0.333,0,1,0.556,0,0.778,1,1,1,1,1.411,1,1.822,1,2.233,1,1,2.389,1,2.544,0,2.7,0,2,3.6,0,1,3.822,0,4.044,1,4.267,1,1,4.678,1,5.089,1,5.5,1,1,5.656,1,5.811,0,5.967,0,2,7.267,0,1,7.489,0,7.711,1,7.933,1,1,8.344,1,8.756,1,9.167,1,1,9.322,1,9.478,0,9.633,0,0,10,0]},{"Target":"Parameter","Id":"Param16","Segments":[0,0,0,0.667,0,1,0.889,0,1.111,1,1.333,1,1,1.633,1,1.933,1,2.233,1,1,2.389,1,2.544,0,2.7,0,1,3.111,0,3.522,0,3.933,0,1,4.156,0,4.378,1,4.6,1,1,4.9,1,5.2,1,5.5,1,1,5.656,1,5.811,0,5.967,0,1,6.511,0,7.056,0,7.6,0,1,7.822,0,8.044,1,8.267,1,1,8.567,1,8.867,1,9.167,1,1,9.322,1,9.478,0,9.633,0,0,10,0]},{"Target":"Parameter","Id":"Param17","Segments":[0,0,1,0.422,0,0.844,1,1.267,1,1,1.678,1,2.089,0,2.5,0,1,2.922,0,3.344,1,3.767,1,1,4.178,1,4.589,0,5,0,1,5.422,0,5.844,1,6.267,1,1,6.678,1,7.089,0,7.5,0,1,7.922,0,8.344,1,8.767,1,1,9.178,1,9.589,0,10,0]},{"Target":"Parameter","Id":"Param18","Segments":[0,0,1,0.4,0,0.8,1,1.2,1,2,2.5,0,1,2.9,0,3.3,1,3.7,1,2,5.033,0,1,5.433,0,5.833,1,6.233,1,2,7.533,0,1,7.933,0,8.333,1,8.733,1,2,10,1]},{"Target":"Parameter","Id":"sySleepIdle1","Segments":[0,0,1,0.222,0,0.444,9,0.667,9,1,0.967,9,1.267,9,1.567,9,1,1.722,9,1.878,10,2.033,10,2,2.7,0,1,2.922,0,3.144,9,3.367,9,1,3.667,9,3.967,9,4.267,9,1,4.422,9,4.578,10,4.733,10,2,5.1,0,1,5.311,0,5.522,9,5.733,9,1,6.033,9,6.333,9,6.633,9,1,6.789,9,6.944,10,7.1,10,2,7.567,0,1,7.789,0,8.011,9,8.233,9,1,8.533,9,8.833,9,9.133,9,1,9.289,9,9.444,10,9.6,10,2,9.633,0,0,10,0]},{"Target":"Parameter","Id":"sySleepIdle6","Segments":[0,0,0,0.433,0,1,0.667,0,0.9,9,1.133,9,1,1.278,9,1.422,9,1.567,9,1,1.722,9,1.878,10,2.033,10,2,3.133,0,1,3.367,0,3.6,9,3.833,9,1,3.978,9,4.122,9,4.267,9,1,4.422,9,4.578,10,4.733,10,2,5.5,0,1,5.733,0,5.967,9,6.2,9,1,6.344,9,6.489,9,6.633,9,1,6.789,9,6.944,10,7.1,10,2,8,0,1,8.233,0,8.467,9,8.7,9,1,8.844,9,8.989,9,9.133,9,1,9.289,9,9.444,10,9.6,10,2,9.633,0,0,10,0]},{"Target":"Parameter","Id":"eyeidlex","Segments":[0,-30,1,0.278,-30,0.556,30,0.833,30,1,1.111,30,1.389,-30,1.667,-30,1,1.944,-30,2.222,30,2.5,30,1,2.778,30,3.056,-30,3.333,-30,1,3.611,-30,3.889,30,4.167,30,1,4.444,30,4.722,-30,5,-30,1,5.278,-30,5.556,30,5.833,30,1,6.111,30,6.389,-30,6.667,-30,1,6.944,-30,7.222,30,7.5,30,1,7.778,30,8.056,-30,8.333,-30,1,8.611,-30,8.889,30,9.167,30,1,9.444,30,9.722,-30,10,-30]},{"Target":"Parameter","Id":"eyeidley","Segments":[0,10.69,1,0.456,4.447,0.911,-12.896,1.367,-12.896,1,1.922,-12.896,2.478,12.896,3.033,12.896,1,3.589,12.896,4.144,-12.896,4.7,-12.896,1,5.256,-12.896,5.811,12.896,6.367,12.896,1,6.922,12.896,7.478,-12.896,8.033,-12.896,1,8.589,-12.896,9.144,12.896,9.7,12.896,1,9.8,12.896,9.9,12.06,10,10.69]},{"Target":"Parameter","Id":"syAnyIdle1","Segments":[0,0,1,0.4,0,0.8,10,1.2,10,2,1.667,0,1,2.067,0,2.467,10,2.867,10,2,3.333,0,1,3.733,0,4.133,10,4.533,10,2,5,0,1,5.4,0,5.8,10,6.2,10,2,6.667,0,1,7.067,0,7.467,10,7.867,10,2,8.333,0,1,8.733,0,9.133,10,9.533,10,2,10,0]},{"Target":"Parameter","Id":"syAnyIdle4","Segments":[0,5,1,0.2,7.5,0.4,10,0.6,10,2,1.067,0,1,1.467,0,1.867,10,2.267,10,2,2.733,0,1,3.133,0,3.533,10,3.933,10,2,4.4,0,1,4.8,0,5.2,10,5.6,10,2,6.067,0,1,6.467,0,6.867,10,7.267,10,2,7.733,0,1,8.133,0,8.533,10,8.933,10,2,9.4,0,0,10,0]},{"Target":"Parameter","Id":"syAnyIdle2","Segments":[0,0,0,0.533,0,1,0.978,0,1.422,10,1.867,10,2,2.4,0,1,2.844,0,3.289,10,3.733,10,0,10,10]}]}]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/live2d-models/%E4%BA%91%E5%90%9Ekumo/motions/%E7%BA%A2%E6%B8%A9.motion3.json</url>
+    <content><![CDATA[{"Version":3,"Meta":{"Duration":1.4,"Fps":30,"Loop":true,"AreBeziersRestricted":false,"CurveCount":1,"TotalSegmentCount":2,"TotalPointCount":5,"UserDataCount":0,"TotalUserDataSize":0},"Curves":[{"Target":"Parameter","Id":"HandNormalButton3","Segments":[0,0,1,0.444,0,0.889,1,1.333,1,0,1.4,1]}]}]]></content>
   </entry>
 </search>
